@@ -1,0 +1,17 @@
+{
+  "name": "nexorium-root",
+  "version": "1.0.0",
+  "description": "NEXORIUM Trading Academy - Root directory",
+  "scripts": {
+    "dev": "cd website && npm run dev",
+    "build": "cd website && npm run build",
+    "preview": "cd website && npm run preview",
+    "install-deps": "cd website && npm install"
+  },
+  "keywords": [
+    "nexorium",
+    "trading",
+    "academy"
+  ],
+  "author": "NEXORIUM Team"
+}

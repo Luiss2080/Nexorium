@@ -1,0 +1,12 @@
+{
+  "name": "nexorium-root",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "nexorium-root",
+      "version": "1.0.0"
+    }
+  }
+}

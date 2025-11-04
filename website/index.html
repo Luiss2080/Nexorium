@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/LogoNexorium.png" />
+    <link rel="apple-touch-icon" href="/images/LogoNexorium.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXORIUM Trading Academy - Academia de Trading Profesional</title>
+    <meta
+      name="description"
+      content="NEXORIUM Trading Academy - La mejor academia de trading en línea. Aprende Forex, Criptomonedas, Acciones y más con traders profesionales."
+    />
+    <meta
+      name="keywords"
+      content="trading, forex, criptomonedas, bitcoin, academia, cursos, señales, análisis técnico"
+    />
+    <meta name="author" content="NEXORIUM Trading Academy" />
+
+    <!-- Precargar estilos CSS críticos -->
+    <link rel="preload" href="/css/main.css" as="style" />
+    <link rel="preload" href="/css/header.css" as="style" />
+    <link rel="preload" href="/css/footer.css" as="style" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://localhost/Nexorium/" />
+    <meta property="og:title" content="NEXORIUM Trading Academy" />
+    <meta
+      property="og:description"
+      content="La mejor academia de trading en línea. Aprende con traders profesionales."
+    />
+    <meta property="og:image" content="/assets/images/nexorium-og.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="http://localhost/Nexorium/" />
+    <meta property="twitter:title" content="NEXORIUM Trading Academy" />
+    <meta
+      property="twitter:description"
+      content="La mejor academia de trading en línea. Aprende con traders profesionales."
+    />
+    <meta
+      property="twitter:image"
+      content="/assets/images/nexorium-twitter.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preconnect para optimizar carga de fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts - Trading Academy -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tema de color para navegadores móviles -->
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Prevenir zoom en iOS -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- CSS para loading inicial -->
+    <style>
+      /* Loading Screen - Trading Theme */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #000000 0%, #1a0000 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .loading-logo {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 2rem;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 0, 0, 0.1);
+        border-top: 3px solid #ff0000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      .loading-text {
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        margin-top: 1rem;
+        opacity: 0.8;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 10px rgba(255, 0, 0, 0.5),
+            0 0 20px rgba(255, 0, 0, 0.3), 0 0 30px rgba(255, 0, 0, 0.1);
+        }
+        to {
+          text-shadow: 0 0 20px rgba(255, 102, 0, 0.8),
+            0 0 30px rgba(255, 102, 0, 0.6), 0 0 40px rgba(255, 102, 0, 0.4);
+        }
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background: #000000;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-logo">NEXORIUM</div>
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Cargando Trading Academy...</div>
+    </div>
+
+    <!-- React App Root -->
+    <div id="root"></div>
+
+    <!-- Vite Script -->
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Loading Screen Script -->
+    <script>
+      console.log("🔄 NEXORIUM: Loading screen inicializado");
+
+      // Función para ocultar loading screen
+      function hideLoadingScreen() {
+        const loadingScreen = document.getElementById("loading-screen");
+        if (loadingScreen) {
+          console.log("🎯 NEXORIUM: Ocultando loading screen");
+          loadingScreen.style.opacity = "0";
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+            console.log("✅ NEXORIUM: Loading screen oculto");
+          }, 300);
+        }
+      }
+
+      // Ocultar loading screen cuando la app esté lista
+      window.addEventListener("load", function () {
+        console.log("📦 NEXORIUM: Window load event");
+        setTimeout(hideLoadingScreen, 500);
+      });
+
+      // Ocultar cuando React se monte (detectar cambios en #root)
+      const observer = new MutationObserver(function (mutations) {
+        const root = document.getElementById("root");
+        if (root && root.children.length > 0) {
+          console.log("⚛️ NEXORIUM: React detectado en #root");
+          hideLoadingScreen();
+          observer.disconnect();
+        }
+      });
+
+      // Observar cambios en el DOM
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Fallback: ocultar después de 3 segundos máximo
+      setTimeout(() => {
+        console.log("⏰ NEXORIUM: Timeout fallback activado");
+        hideLoadingScreen();
+      }, 3000);
+    </script>
+
+    <!-- Google Analytics (opcional) -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_TRACKING_ID');
+    </script>
+    -->
+
+    <!-- JavaScript principal -->
+    <script src="/javaScript/main.js"></script>
+
+    <!-- Footer JavaScript -->
+    <script src="/javaScript/footer.js"></script>
+  </body>
+</html>
