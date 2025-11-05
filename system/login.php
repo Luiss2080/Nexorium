@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <!-- Register Link -->
                     <div class="register-section">
-                        <p class="no-account-text">¿No tienes cuenta de trading? 
+                        <p class="no-account-text">¿No tienes cuenta de trading?
                             <a href="#" class="register-link-main" id="registerMainLink">¡Solicita acceso exclusivo!</a>
                         </p>
                     </div>

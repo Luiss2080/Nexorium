@@ -14,11 +14,11 @@
   --gray-light: #cccccc;
   --gray-medium: #888888;
   --gray-dark: #333333;
-  
+
   /* Gradients matching website */
   --gradient-primary: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
   --gradient-secondary: linear-gradient(135deg, #ff6600 0%, #ff0000 100%);
-  
+
   /* Glass effects */
   --glass-bg: rgba(26, 26, 26, 0.95);
   --card-bg: rgba(255, 255, 255, 0.02);
@@ -1521,8 +1521,12 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modalSlideIn {

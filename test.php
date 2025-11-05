@@ -82,4 +82,3 @@ echo "<p><strong>Contraseña:</strong> admin123</p>";
 echo "</div>";
 
 echo "</div>";
-?>

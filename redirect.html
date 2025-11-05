@@ -1,89 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Redirigiendo - NEXORIUM</title>
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
+      .container {
+        max-width: 500px;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        border-radius: 12px;
+        backdrop-filter: blur(20px);
+      }
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ff0000;
+        margin-bottom: 1rem;
+      }
+      .message {
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: transform 0.3s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top: 2px solid #ff0000;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 10px;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .container {
-            max-width: 500px;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 0, 0, 0.2);
-            border-radius: 12px;
-            backdrop-filter: blur(20px);
+        100% {
+          transform: rotate(360deg);
         }
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ff0000;
-            margin-bottom: 1rem;
-        }
-        .message {
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: transform 0.3s ease;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-top: 2px solid #ff0000;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="logo">💎 NEXORIUM</div>
-        <div class="message">
-            <div class="spinner"></div>
-            <strong>Redirigiendo al puerto correcto...</strong>
-            <br><br>
-            El sistema se está moviendo automáticamente a la URL correcta.
-            <br>
-            Si no eres redirigido automáticamente, haz clic en el botón de abajo.
-        </div>
-        <a href="http://localhost/Nexorium/system/login.php" class="btn">
-            🚀 Ir al Login
-        </a>
+      <div class="logo">💎 NEXORIUM</div>
+      <div class="message">
+        <div class="spinner"></div>
+        <strong>Redirigiendo al puerto correcto...</strong>
+        <br /><br />
+        El sistema se está moviendo automáticamente a la URL correcta.
+        <br />
+        Si no eres redirigido automáticamente, haz clic en el botón de abajo.
+      </div>
+      <a href="http://localhost/Nexorium/system/login.php" class="btn">
+        🚀 Ir al Login
+      </a>
     </div>
 
     <script>
-        // Redirección automática después de 3 segundos
-        setTimeout(function() {
-            window.location.href = 'http://localhost/Nexorium/system/login.php';
-        }, 3000);
+      // Redirección automática después de 3 segundos
+      setTimeout(function () {
+        window.location.href = "http://localhost/Nexorium/system/login.php";
+      }, 3000);
     </script>
-</body>
+  </body>
 </html>

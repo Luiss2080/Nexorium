@@ -415,19 +415,19 @@ function typeText(element, text, speed) {
 
 function initializeSocialLinks() {
   const socialLinks = document.querySelectorAll(".social-link");
-  
-  socialLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
+
+  socialLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
       const platform = this.classList[1]; // tiktok, facebook, instagram, whatsapp
       handleSocialLink(platform);
     });
   });
-  
+
   // Register link
   const registerLink = document.getElementById("registerMainLink");
   if (registerLink) {
-    registerLink.addEventListener("click", function(e) {
+    registerLink.addEventListener("click", function (e) {
       e.preventDefault();
       showContactModal();
     });
@@ -437,28 +437,32 @@ function initializeSocialLinks() {
 function handleSocialLink(platform) {
   let message = "";
   let action = "";
-  
-  switch(platform) {
+
+  switch (platform) {
     case "trading-signals":
-      message = "🚀 Accede a nuestras señales VIP de trading con alta precisión y rentabilidad comprobada.";
+      message =
+        "🚀 Accede a nuestras señales VIP de trading con alta precisión y rentabilidad comprobada.";
       action = "Ver Señales VIP";
       break;
     case "academy":
-      message = "🎓 Únete a nuestra academia profesional y aprende las estrategias de trading más avanzadas.";
+      message =
+        "🎓 Únete a nuestra academia profesional y aprende las estrategias de trading más avanzadas.";
       action = "Ir a Academia Pro";
       break;
     case "community":
-      message = "👥 Conecta con traders profesionales y comparte estrategias en nuestra comunidad exclusiva.";
+      message =
+        "👥 Conecta con traders profesionales y comparte estrategias en nuestra comunidad exclusiva.";
       action = "Unirse a Comunidad";
       break;
     case "support":
-      message = "💬 Nuestro equipo de soporte está disponible 24/7 para resolver tus dudas de trading.";
+      message =
+        "💬 Nuestro equipo de soporte está disponible 24/7 para resolver tus dudas de trading.";
       action = "Contactar Soporte";
       break;
     default:
       return;
   }
-  
+
   showSocialModal(platform, message, action);
 }
 
@@ -489,7 +493,7 @@ function showSocialModal(platform, message, action) {
   modal.querySelector(".modal-close").addEventListener("click", () => {
     modal.remove();
   });
-  
+
   modal.querySelector(".btn-modal-secondary").addEventListener("click", () => {
     modal.remove();
   });
