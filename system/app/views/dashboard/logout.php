@@ -14,5 +14,5 @@ session_unset();
 session_destroy();
 
 // Redireccionar al login con mensaje
-header('Location: http://localhost:8000/Nexorium/system/login.php?message=logout');
+header('Location: http://localhost/Nexorium/system/login.php?message=logout');
 exit;

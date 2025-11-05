@@ -156,7 +156,7 @@ const Header = ({ currentView, changeView }) => {
           <div className="header-actions">
             <div className="auth-buttons">
               <a
-                href="http://localhost:8000/Nexorium/system/login.php"
+                href="http://localhost/Nexorium/system/login.php"
                 className="btn btn-ghost"
                 target="_blank"
               >

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializePasswordToggle();
   initializeAnimations();
   initializeDemoCredentials();
-  initializeSocialLogin();
+  initializeSocialLinks();
   initializeCounters();
 
   // Efectos visuales
@@ -413,39 +413,130 @@ function typeText(element, text, speed) {
 // LOGIN SOCIAL
 // =============================================================================
 
-function initializeSocialLogin() {
-  const googleButton = document.querySelector(".google-button");
-  const facebookButton = document.querySelector(".facebook-button");
-
-  if (googleButton) {
-    googleButton.addEventListener("click", function () {
-      showSocialLoginModal("Google");
+function initializeSocialLinks() {
+  const socialLinks = document.querySelectorAll(".social-link");
+  
+  socialLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      const platform = this.classList[1]; // tiktok, facebook, instagram, whatsapp
+      handleSocialLink(platform);
     });
-  }
-
-  if (facebookButton) {
-    facebookButton.addEventListener("click", function () {
-      showSocialLoginModal("Facebook");
+  });
+  
+  // Register link
+  const registerLink = document.getElementById("registerMainLink");
+  if (registerLink) {
+    registerLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      showContactModal();
     });
   }
 }
 
-function showSocialLoginModal(provider) {
-  // Crear modal simple
+function handleSocialLink(platform) {
+  let message = "";
+  let action = "";
+  
+  switch(platform) {
+    case "trading-signals":
+      message = "🚀 Accede a nuestras señales VIP de trading con alta precisión y rentabilidad comprobada.";
+      action = "Ver Señales VIP";
+      break;
+    case "academy":
+      message = "🎓 Únete a nuestra academia profesional y aprende las estrategias de trading más avanzadas.";
+      action = "Ir a Academia Pro";
+      break;
+    case "community":
+      message = "👥 Conecta con traders profesionales y comparte estrategias en nuestra comunidad exclusiva.";
+      action = "Unirse a Comunidad";
+      break;
+    case "support":
+      message = "💬 Nuestro equipo de soporte está disponible 24/7 para resolver tus dudas de trading.";
+      action = "Contactar Soporte";
+      break;
+    default:
+      return;
+  }
+  
+  showSocialModal(platform, message, action);
+}
+
+function showSocialModal(platform, message, action) {
   const modal = document.createElement("div");
   modal.className = "social-modal";
   modal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Login con ${provider}</h3>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Esta funcionalidad estará disponible próximamente.</p>
-                <p>Por ahora, utiliza las credenciales de demo para acceder.</p>
-            </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>💎 NEXORIUM Trading Academy</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>${message}</p>
+        <p><strong>Esta funcionalidad estará disponible próximamente.</strong></p>
+        <p>Mientras tanto, utiliza las credenciales de demo para explorar la plataforma.</p>
+        <div class="modal-actions">
+          <button class="btn-modal-primary">${action}</button>
+          <button class="btn-modal-secondary">Entendido</button>
         </div>
-    `;
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  // Event listeners
+  modal.querySelector(".modal-close").addEventListener("click", () => {
+    modal.remove();
+  });
+  
+  modal.querySelector(".btn-modal-secondary").addEventListener("click", () => {
+    modal.remove();
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.remove();
+    }
+  });
+
+  // Auto-remove después de 8 segundos
+  setTimeout(() => {
+    if (modal.parentNode) {
+      modal.remove();
+    }
+  }, 8000);
+}
+
+function showContactModal() {
+  const modal = document.createElement("div");
+  modal.className = "social-modal";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>💎 Acceso VIP - NEXORIUM</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>¿Quieres formar parte de la élite del trading?</strong></p>
+        <p>Solicita tu acceso exclusivo a NEXORIUM Trading Academy y únete a los traders más exitosos.</p>
+        <div class="contact-options">
+          <div class="contact-item">
+            <strong>📧 Admisiones:</strong> admissions@nexorium.com
+          </div>
+          <div class="contact-item">
+            <strong>� WhatsApp VIP:</strong> +1 (555) 987-6543
+          </div>
+          <div class="contact-item">
+            <strong>📞 Mesa de ayuda:</strong> +1 (555) 123-4567
+          </div>
+          <div class="contact-item">
+            <strong>� Acceso Demo:</strong> admin@nexorium.com / admin123
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 
   document.body.appendChild(modal);
 
@@ -460,12 +551,12 @@ function showSocialLoginModal(provider) {
     }
   });
 
-  // Auto-remove después de 5 segundos
+  // Auto-remove después de 12 segundos
   setTimeout(() => {
     if (modal.parentNode) {
       modal.remove();
     }
-  }, 5000);
+  }, 12000);
 }
 
 // =============================================================================

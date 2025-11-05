@@ -9,7 +9,7 @@ session_start();
 
 // Verificar si ya está logueado
 if (isset($_SESSION['user_id'])) {
-    header('Location: http://localhost:8000/Nexorium/system/app/views/dashboard/');
+    header('Location: http://localhost/Nexorium/system/app/views/dashboard/');
     exit;
 } // Variables para el formulario
 $error_message = '';
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_role'] = 'admin';
 
             // Redireccionar al dashboard
-            header('Location: http://localhost:8000/Nexorium/system/app/views/dashboard/');
+            header('Location: http://localhost/Nexorium/system/app/views/dashboard/');
             exit;
         } else {
             $error_message = 'Credenciales incorrectas. Inténtalo nuevamente.';
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - NEXORIUM Trading Academy</title>
-    <link rel="icon" type="image/png" href="http://localhost:3002/images/LogoNexorium.png">
+    <title>Acceso Profesional - NEXORIUM Trading Academy</title>
+    <link rel="icon" type="image/png" href="http://localhost/Nexorium/website/public/images/LogoNexorium.png">
 
     <!-- Precargar fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- CSS del login -->
-    <link rel="stylesheet" href="public/assets/css/login.css">
+    <link rel="stylesheet" href="http://localhost/Nexorium/system/public/assets/css/login.css">
 
     <!-- Meta tags para SEO -->
     <meta name="description" content="Accede a tu cuenta en NEXORIUM Trading Academy. Plataforma profesional de trading y educación financiera.">
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="brand-section">
                     <div class="logo-container">
                         <div class="logo-backdrop"></div>
-                        <img src="http://localhost:3002/images/LogoNexorium.png" alt="NEXORIUM" class="brand-logo">
+                        <img src="http://localhost/Nexorium/website/public/images/LogoNexorium.png" alt="NEXORIUM" class="brand-logo">
                     </div>
                     <div class="brand-text">
                         <h1 class="brand-title">NEXORIUM</h1>
@@ -115,10 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Mensaje profesional -->
                 <div class="welcome-section">
-                    <h2 class="welcome-title">Acceso Profesional</h2>
+                    <h2 class="welcome-title">¡Bienvenido!</h2>
                     <p class="welcome-description">
-                        Plataforma avanzada de trading diseñada para profesionales
-                        que buscan excelencia en los mercados financieros.
+                        Inicia sesión con tu cuenta académica y accede a la plataforma profesional de trading diseñada para traders de élite que buscan excelencia en los mercados financieros.
                     </p>
                 </div>
 
@@ -127,22 +126,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="feature-card">
                         <div class="feature-icon">📊</div>
                         <div class="feature-content">
-                            <span class="feature-title">Análisis Avanzado</span>
-                            <span class="feature-desc">Tools profesionales</span>
+                            <span class="feature-title">Análisis Pro</span>
+                            <span class="feature-desc">Herramientas avanzadas</span>
                         </div>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🎯</div>
                         <div class="feature-content">
-                            <span class="feature-title">Señales Precisas</span>
-                            <span class="feature-desc">Alta rentabilidad</span>
+                            <span class="feature-title">Señales Premium</span>
+                            <span class="feature-desc">Alta precisión</span>
                         </div>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🚀</div>
                         <div class="feature-content">
-                            <span class="feature-title">Resultados Pro</span>
-                            <span class="feature-desc">Performance óptimo</span>
+                            <span class="feature-title">Trading Elite</span>
+                            <span class="feature-desc">Resultados superiores</span>
                         </div>
                     </div>
                 </div>
@@ -192,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 id="email"
                                 name="email"
                                 class="form-input"
-                                placeholder="tu@email.com"
+                                placeholder="trader@nexorium.com"
                                 value="<?php echo htmlspecialchars($email ?? ''); ?>"
                                 required
                                 autocomplete="email">
@@ -231,46 +230,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <!-- Botón de submit -->
-                    <button type="submit" class="login-button" id="loginButton">
-                        <span class="button-text">Iniciar Sesión</span>
+                    <button type="submit" class="login-button btn-nexorium" id="loginButton">
+                        <span class="button-text">� ACCESO TRADING</span>
                         <span class="button-loader" id="buttonLoader">
                             <div class="loader-spinner"></div>
                         </span>
                     </button>
-
-                    <!-- Divider -->
-                    <div class="divider">
-                        <span class="divider-text">o continúa con</span>
-                    </div>
-
-                    <!-- Social Login -->
-                    <div class="social-login">
-                        <button type="button" class="social-button google-button">
-                            <div class="social-icon">📧</div>
-                            <span>Google</span>
-                        </button>
-                        <button type="button" class="social-button facebook-button">
-                            <div class="social-icon">📘</div>
-                            <span>Facebook</span>
-                        </button>
-                    </div>
 
                 </form>
 
                 <!-- Footer del formulario -->
                 <div class="form-footer">
                     <p class="register-text">
-                        ¿No tienes cuenta?
-                        <a href="#" class="register-link" id="registerLink">Regístrate aquí</a>
+                        ¿Quieres unirte a la élite del trading?
+                        <a href="#" class="register-link" id="registerLink">¡Solicita tu acceso VIP!</a>
                     </p>
+
+                    <!-- Social Media Links -->
+                    <div class="social-media-links">
+                        <a href="#" class="social-link trading-signals" title="Señales de Trading">
+                            <div class="social-icon">📈</div>
+                            <span>Señales VIP</span>
+                        </a>
+                        <a href="#" class="social-link academy" title="Academia">
+                            <div class="social-icon">🎓</div>
+                            <span>Academia Pro</span>
+                        </a>
+                        <a href="#" class="social-link community" title="Comunidad">
+                            <div class="social-icon">�</div>
+                            <span>Comunidad</span>
+                        </a>
+                        <a href="#" class="social-link support" title="Soporte">
+                            <div class="social-icon">💬</div>
+                            <span>Soporte 24/7</span>
+                        </a>
+                    </div>
+
+                    <!-- Register Link -->
+                    <div class="register-section">
+                        <p class="no-account-text">¿No tienes cuenta de trading? 
+                            <a href="#" class="register-link-main" id="registerMainLink">¡Solicita acceso exclusivo!</a>
+                        </p>
+                    </div>
 
                     <!-- Links adicionales -->
                     <div class="additional-links">
-                        <a href="http://localhost:3002/" class="back-link">
+                        <a href="http://localhost/Nexorium/website/" class="back-link">
                             ← Volver al sitio web
                         </a>
                         <span class="link-separator">|</span>
-                        <a href="#" class="support-link">Soporte técnico</a>
+                        <a href="#" class="support-link">Mesa de ayuda</a>
                     </div>
                 </div>
 
@@ -279,8 +288,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Información de contacto -->
             <div class="contact-info">
                 <div class="contact-item">
-                    <strong>¿Tienes dudas?</strong>
-                    <span>Contáctanos: support@nexorium.com</span>
+                    <strong>¿Necesitas ayuda para acceder?</strong>
+                    <span>Contacta a nuestro equipo de soporte: support@nexorium.com</span>
                 </div>
             </div>
 
@@ -290,14 +299,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Credenciales de demo (solo para desarrollo) -->
     <div class="demo-credentials">
-        <h4>🔐 Credenciales de Demo:</h4>
+        <h4>� Acceso Demo - Trading Academy:</h4>
         <p><strong>Email:</strong> admin@nexorium.com</p>
         <p><strong>Contraseña:</strong> admin123</p>
-        <button class="demo-fill-btn" id="demoFillBtn">Llenar automáticamente</button>
+        <button class="demo-fill-btn" id="demoFillBtn">Acceder con Demo</button>
     </div>
 
     <!-- JavaScript -->
-    <script src="public/assets/js/login.js"></script>
+    <script src="http://localhost/Nexorium/system/public/assets/js/login.js"></script>
 
     <!-- Analytics (opcional) -->
     <script>

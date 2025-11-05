@@ -6,54 +6,42 @@
 /* ===== VARIABLES CSS ===== */
 :root {
   /* Colores principales - NEXORIUM Theme */
-  --primary-red: #ff4757;
-  --primary-dark: #e84545;
-  --secondary-color: #00d4aa;
-  --accent-orange: #ff8c42;
-
-  /* Backgrounds */
-  --dark-bg: #0a0a0a;
-  --darker-bg: #000000;
-  --card-bg: #1a1a1a;
+  --primary-red: #ff0000;
+  --primary-orange: #ff6600;
+  --dark-bg: #000000;
+  --dark-secondary: #1a1a1a;
+  --white: #ffffff;
+  --gray-light: #cccccc;
+  --gray-medium: #888888;
+  --gray-dark: #333333;
+  
+  /* Gradients matching website */
+  --gradient-primary: linear-gradient(135deg, #ff0000 0%, #ff6600 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff6600 0%, #ff0000 100%);
+  
+  /* Glass effects */
   --glass-bg: rgba(26, 26, 26, 0.95);
+  --card-bg: rgba(255, 255, 255, 0.02);
+
+  /* Shadows matching website */
+  --shadow-red: 0 4px 15px rgba(255, 0, 0, 0.2);
+  --shadow-red-hover: 0 8px 25px rgba(255, 0, 0, 0.4);
+  --shadow-glow: 0 0 30px rgba(255, 0, 0, 0.3);
 
   /* Text colors */
   --text-primary: #ffffff;
   --text-secondary: #cccccc;
   --text-muted: #999999;
-  --text-error: #ff4757;
+  --text-error: #ff0000;
   --text-success: #00d4aa;
 
   /* Borders */
   --border-color: rgba(255, 255, 255, 0.1);
-  --border-focus: rgba(255, 71, 87, 0.5);
-  --border-error: rgba(255, 71, 87, 0.8);
+  --border-focus: rgba(255, 0, 0, 0.5);
+  --border-error: rgba(255, 0, 0, 0.8);
 
-  /* Shadows */
-  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(255, 71, 87, 0.3);
-
-  /* Gradients */
-  --gradient-primary: linear-gradient(
-    135deg,
-    var(--primary-red) 0%,
-    var(--accent-orange) 100%
-  );
-  --gradient-secondary: linear-gradient(
-    135deg,
-    var(--secondary-color) 0%,
-    #00b894 100%
-  );
-  --gradient-bg: linear-gradient(
-    135deg,
-    var(--dark-bg) 0%,
-    var(--darker-bg) 100%
-  );
-
-  /* Fonts */
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Fonts matching website */
+  --font-primary: "Inter", sans-serif;
   --font-headings: "Montserrat", sans-serif;
 
   /* Spacing */
@@ -64,15 +52,12 @@
   --spacing-xl: 3rem;
 
   /* Border radius */
-  --border-radius-sm: 8px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
-  --border-radius-xl: 24px;
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
 
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-smooth: 0.3s ease;
-  --transition-slow: 0.5s ease;
+  --transition-fast: 0.3s ease;
+  --transition-smooth: 0.5s ease;
 }
 
 /* ===== RESET Y BASE ===== */
@@ -834,29 +819,34 @@ body {
   background: rgba(255, 71, 87, 0.1);
 }
 
-/* Botón de login profesional */
-.login-button {
+/* Botón de login profesional - Estilo Nexorium */
+.login-button,
+.btn-nexorium {
   width: 100%;
-  padding: 22px var(--spacing-2xl);
-  background: linear-gradient(135deg, #ff4757 0%, #ff6b7a 50%, #ff4757 100%);
-  border: none;
-  border-radius: var(--border-radius-lg);
-  color: white;
+  padding: 18px var(--spacing-lg);
+  background: var(--gradient-primary);
+  border: 2px solid var(--primary-red);
+  border-radius: var(--border-radius);
+  color: var(--white);
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: var(--font-primary);
+  font-family: var(--font-headings);
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: var(--transition-fast);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(255, 71, 87, 0.25), 0 5px 15px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  margin: var(--spacing-2xl) 0;
+  box-shadow: var(--shadow-red);
+  margin: var(--spacing-lg) 0;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
 }
 
-.login-button::before {
+.login-button::before,
+.btn-nexorium::before {
   content: "";
   position: absolute;
   top: 0;
@@ -872,20 +862,23 @@ body {
   transition: left 0.5s ease;
 }
 
-.login-button:hover::before {
+.login-button:hover::before,
+.btn-nexorium:hover::before {
   left: 100%;
 }
 
-.login-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 40px rgba(255, 71, 87, 0.35),
-    0 8px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  background: linear-gradient(135deg, #ff5569 0%, #ff7b8c 50%, #ff5569 100%);
+.login-button:hover,
+.btn-nexorium:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-red-hover);
+  border-color: var(--primary-orange);
+  background: var(--gradient-secondary);
 }
 
-.login-button:active {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.3), 0 4px 15px rgba(0, 0, 0, 0.1);
+.login-button:active,
+.btn-nexorium:active {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-red);
 }
 
 .login-button.loading {
@@ -929,6 +922,114 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Social Media Links - Estilo matching website */
+.social-media-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.3);
+  color: var(--primary-red);
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
+}
+
+.social-link.tiktok:hover {
+  color: #ff0050;
+  border-color: rgba(255, 0, 80, 0.3);
+}
+
+.social-link.facebook:hover {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.3);
+}
+
+.social-link.instagram:hover {
+  color: #e4405f;
+  border-color: rgba(228, 64, 95, 0.3);
+}
+
+.social-link.whatsapp:hover {
+  color: #25d366;
+  border-color: rgba(37, 211, 102, 0.3);
+}
+
+/* Trading-specific social links */
+.social-link.trading-signals:hover {
+  color: #00ff88;
+  border-color: rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.social-link.academy:hover {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.social-link.community:hover {
+  color: #ff6600;
+  border-color: rgba(255, 102, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.2);
+}
+
+.social-link.support:hover {
+  color: #00d4aa;
+  border-color: rgba(0, 212, 170, 0.3);
+  box-shadow: 0 0 15px rgba(0, 212, 170, 0.2);
+}
+
+.social-icon {
+  font-size: 1.2rem;
+}
+
+/* Register Section */
+.register-section {
+  text-align: center;
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.no-account-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.register-link-main {
+  color: var(--primary-red);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.register-link-main:hover {
+  color: var(--primary-orange);
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
 }
 
 /* Divider */
@@ -1296,5 +1397,141 @@ body {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+/* ===== MODAL STYLES ===== */
+.social-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 500px;
+  width: 90%;
+  backdrop-filter: blur(20px);
+  animation: modalSlideIn 0.4s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.modal-header h3 {
+  color: var(--primary-red);
+  font-family: var(--font-headings);
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(255, 0, 0, 0.2);
+  color: var(--primary-red);
+}
+
+.modal-body {
+  color: var(--white);
+  line-height: 1.6;
+}
+
+.modal-body p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.btn-modal-primary,
+.btn-modal-secondary {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  flex: 1;
+}
+
+.btn-modal-primary {
+  background: var(--gradient-primary);
+  color: var(--white);
+}
+
+.btn-modal-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-red);
+}
+
+.btn-modal-secondary {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-modal-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.contact-options {
+  margin-top: var(--spacing-lg);
+}
+
+.contact-item {
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

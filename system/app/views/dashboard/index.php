@@ -9,7 +9,7 @@ session_start();
 
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['user_id'])) {
-    header('Location: http://localhost:8000/Nexorium/system/login.php');
+    header('Location: http://localhost/Nexorium/system/login.php');
     exit;
 }
 
