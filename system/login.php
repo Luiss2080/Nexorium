@@ -146,11 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 </div>
             </div>
-
-            <!-- Footer minimalista -->
-            <div class="branding-footer">
-                <p class="copyright-text">© 2025 NEXORIUM - Todos los derechos reservados</p>
-            </div>
         </div>
 
         <!-- Sección derecha - Formulario de login -->
