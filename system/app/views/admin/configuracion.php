@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Configuración del Sistema
  * Descripción: Panel de configuraciones generales
@@ -15,4 +16,3 @@
 // - Modo mantenimiento
 // - Respaldo y restauración
 // - Token CSRF
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Dashboard Capacitador
  * Descripción: Panel principal del capacitador
@@ -12,4 +13,3 @@
 // - Tareas pendientes
 // - Notificaciones importantes
 // - Enlaces rápidos a funciones principales
-?>

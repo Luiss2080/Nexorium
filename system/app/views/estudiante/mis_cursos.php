@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Mis Cursos (Estudiante)
  * Descripción: Lista de cursos del estudiante
@@ -13,4 +14,3 @@
 // - Información de capacitadores
 // - Fechas importantes
 // - Acceso rápido a materiales
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Layout Principal
  * Descripción: Layout base para todas las vistas autenticadas
@@ -15,4 +16,3 @@
 // - Scripts JS (jQuery, Bootstrap, custom)
 // - Manejo de mensajes flash
 // - Indicador de usuario actual
-?>

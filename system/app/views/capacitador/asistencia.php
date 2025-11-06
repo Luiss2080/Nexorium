@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Asistencia (Capacitador)
  * Descripción: Control de asistencias por clase
@@ -14,4 +15,3 @@
 // - Reportes de asistencia
 // - Registro masivo
 // - Token CSRF
-?>

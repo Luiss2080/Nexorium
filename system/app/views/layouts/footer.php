@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Footer Global
  * Descripción: Pie de página reutilizable
@@ -11,4 +12,3 @@
 // - Versión del sistema
 // - Enlaces a documentación
 // - Política de privacidad
-?>

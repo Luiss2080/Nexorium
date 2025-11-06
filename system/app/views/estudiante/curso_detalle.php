@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Detalle del Curso (Estudiante)
  * Descripción: Vista detallada de un curso
@@ -13,4 +14,3 @@
 // - Botón de inscripción (si no está inscrito)
 // - Foro o comunicación
 // - Calendario de clases
-?>

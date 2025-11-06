@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Mis Materiales (Capacitador)
  * Descripción: Gestión de materiales del capacitador
@@ -14,4 +15,3 @@
 // - Organización por módulos
 // - Configuración de acceso (público/privado)
 // - Token CSRF
-?>

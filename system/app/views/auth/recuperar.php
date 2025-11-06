@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Recuperar contraseña
  * Descripción: Formulario para recuperación de contraseña
@@ -9,4 +10,3 @@
 // - Validación de email
 // - Instrucciones claras
 // - Token CSRF
-?>

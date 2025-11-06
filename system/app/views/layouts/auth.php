@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Layout de Autenticación
  * Descripción: Layout específico para páginas de login/registro
@@ -11,4 +12,3 @@
 // - Solo CSS/JS necesario para auth
 // - Logo de la aplicación
 // - Enlaces entre formularios
-?>

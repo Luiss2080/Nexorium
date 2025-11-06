@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Mis Cursos (Capacitador)
  * Descripción: Lista de cursos asignados al capacitador
@@ -11,4 +12,3 @@
 // - Enlaces a gestión detallada de cada curso
 // - Progreso de cada curso
 // - Acciones rápidas (ver estudiantes, materiales, asistencia)
-?>

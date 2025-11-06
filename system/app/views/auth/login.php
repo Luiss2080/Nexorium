@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Login
  * Descripción: Formulario de inicio de sesión
@@ -10,4 +11,3 @@
 // - Manejo de errores y mensajes flash
 // - Token CSRF
 // - Enlaces a registro y recuperación
-?>

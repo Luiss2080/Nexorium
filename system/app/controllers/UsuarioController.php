@@ -1,18 +1,21 @@
 <?php
+
 /**
  * Controlador de Usuarios (API)
  */
-class UsuarioController extends Controller {
-    
-    public function listar() {
+class UsuarioController extends Controller
+{
+
+    public function listar()
+    {
         $usuarioModel = new Usuario();
-        
+
         $search = $_GET['search'] ?? '';
         $rol = $_GET['rol'] ?? '';
         $estado = $_GET['estado'] ?? 'activo';
         $page = $_GET['page'] ?? 1;
         $per_page = $_GET['per_page'] ?? 10;
-        
+
         try {
             if ($search) {
                 $usuarios = $usuarioModel->buscar($search, $rol);
@@ -23,13 +26,13 @@ class UsuarioController extends Controller {
                 ];
             } else {
                 $conditions = ['estado' => $estado];
-                
+
                 if ($rol) {
                     $conditions['rol_id'] = $rol;
                 }
-                
+
                 $paginacion = $usuarioModel->paginate($page, $per_page, $conditions, 'nombre ASC');
-                
+
                 $response = [
                     'success' => true,
                     'data' => $paginacion['data'],
@@ -43,9 +46,8 @@ class UsuarioController extends Controller {
                     ]
                 ];
             }
-            
+
             $this->json($response);
-            
         } catch (Exception $e) {
             $this->json([
                 'success' => false,
@@ -53,27 +55,28 @@ class UsuarioController extends Controller {
             ], 500);
         }
     }
-    
-    public function obtener($id) {
+
+    public function obtener($id)
+    {
         $usuarioModel = new Usuario();
         $perfilModel = new Perfil();
-        
+
         try {
             $usuario = $usuarioModel->obtenerConRol($id);
-            
+
             if (!$usuario) {
                 $this->json([
                     'success' => false,
                     'error' => 'Usuario no encontrado'
                 ], 404);
             }
-            
+
             // Obtener perfil extendido
             $perfil = $perfilModel->obtenerPorUsuario($id);
             if ($perfil) {
                 $usuario = array_merge($usuario, $perfil);
             }
-            
+
             // Obtener estadísticas según el rol
             if ($usuario['rol_nombre'] === 'capacitador') {
                 $cursoModel = new Curso();
@@ -86,18 +89,17 @@ class UsuarioController extends Controller {
                     [$id]
                 )['count'];
             }
-            
+
             if ($usuario['rol_nombre'] === 'estudiante') {
                 $inscripcionModel = new Inscripcion();
                 $usuario['cursos_inscritos'] = $inscripcionModel->count(['usuario_id' => $id]);
                 $usuario['cursos_completados'] = $inscripcionModel->count(['usuario_id' => $id, 'estado' => 'completada']);
             }
-            
+
             $this->json([
                 'success' => true,
                 'data' => $usuario
             ]);
-            
         } catch (Exception $e) {
             $this->json([
                 'success' => false,
@@ -105,18 +107,18 @@ class UsuarioController extends Controller {
             ], 500);
         }
     }
-    
-    public function capacitadores() {
+
+    public function capacitadores()
+    {
         $usuarioModel = new Usuario();
-        
+
         try {
             $capacitadores = $usuarioModel->obtenerPorRol(ROLE_TRAINER);
-            
+
             $this->json([
                 'success' => true,
                 'data' => $capacitadores
             ]);
-            
         } catch (Exception $e) {
             $this->json([
                 'success' => false,
@@ -124,18 +126,18 @@ class UsuarioController extends Controller {
             ], 500);
         }
     }
-    
-    public function estudiantes() {
+
+    public function estudiantes()
+    {
         $usuarioModel = new Usuario();
-        
+
         try {
             $estudiantes = $usuarioModel->obtenerPorRol(ROLE_STUDENT);
-            
+
             $this->json([
                 'success' => true,
                 'data' => $estudiantes
             ]);
-            
         } catch (Exception $e) {
             $this->json([
                 'success' => false,
@@ -143,10 +145,11 @@ class UsuarioController extends Controller {
             ], 500);
         }
     }
-    
-    public function estadisticas($id = null) {
+
+    public function estadisticas($id = null)
+    {
         $usuarioModel = new Usuario();
-        
+
         try {
             if ($id) {
                 $perfilModel = new Perfil();
@@ -154,12 +157,11 @@ class UsuarioController extends Controller {
             } else {
                 $estadisticas = $usuarioModel->obtenerEstadisticas();
             }
-            
+
             $this->json([
                 'success' => true,
                 'data' => $estadisticas
             ]);
-            
         } catch (Exception $e) {
             $this->json([
                 'success' => false,

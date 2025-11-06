@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Dashboard Estudiante
  * Descripción: Panel principal del estudiante
@@ -13,4 +14,3 @@
 // - Estadísticas de aprendizaje
 // - Notificaciones importantes
 // - Enlaces rápidos
-?>

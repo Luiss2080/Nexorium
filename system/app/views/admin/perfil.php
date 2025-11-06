@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Perfil del Administrador
  * Descripción: Gestión del perfil personal del administrador
@@ -13,4 +14,3 @@
 // - Estadísticas personales
 // - Preferencias de notificaciones
 // - Token CSRF
-?>

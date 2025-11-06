@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Reportes del Sistema
  * Descripción: Dashboard de reportes y estadísticas avanzadas
@@ -13,4 +14,3 @@
 // - Exportación de datos (CSV, PDF)
 // - Filtros de fecha y categorías
 // - Métricas de engagement
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Gestión de Usuarios
  * Descripción: CRUD completo para gestión de usuarios
@@ -13,4 +14,3 @@
 // - Botones de acciones (editar, eliminar, activar/desactivar)
 // - Formularios con validación
 // - Token CSRF
-?>

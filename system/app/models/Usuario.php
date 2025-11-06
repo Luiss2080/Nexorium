@@ -1,32 +1,46 @@
 <?php
+
 /**
  * Modelo Usuario
  */
-class Usuario extends Model {
+class Usuario extends Model
+{
     protected $table = 'usuarios';
     protected $fillable = [
-        'nombre', 'apellido', 'email', 'password', 'telefono', 
-        'direccion', 'fecha_nacimiento', 'rol_id', 'estado', 'avatar'
+        'nombre',
+        'apellido',
+        'email',
+        'password',
+        'telefono',
+        'direccion',
+        'fecha_nacimiento',
+        'rol_id',
+        'estado',
+        'avatar'
     ];
-    
-    public function crearUsuario($data) {
+
+    public function crearUsuario($data)
+    {
         if (isset($data['password'])) {
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
         }
-        
+
         return $this->create($data);
     }
-    
-    public function actualizarPassword($id, $newPassword) {
+
+    public function actualizarPassword($id, $newPassword)
+    {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         return $this->update($id, ['password' => $hashedPassword]);
     }
-    
-    public function buscarPorEmail($email) {
+
+    public function buscarPorEmail($email)
+    {
         return $this->findBy('email', $email);
     }
-    
-    public function obtenerConRol($id) {
+
+    public function obtenerConRol($id)
+    {
         return $this->db->fetch(
             "SELECT u.*, r.nombre as rol_nombre 
              FROM usuarios u 
@@ -35,12 +49,14 @@ class Usuario extends Model {
             [$id]
         );
     }
-    
-    public function obtenerPorRol($rolId) {
+
+    public function obtenerPorRol($rolId)
+    {
         return $this->where(['rol_id' => $rolId, 'estado' => 'activo']);
     }
-    
-    public function obtenerEstadisticas() {
+
+    public function obtenerEstadisticas()
+    {
         return [
             'total' => $this->count(),
             'activos' => $this->count(['estado' => 'activo']),
@@ -50,34 +66,38 @@ class Usuario extends Model {
             'estudiantes' => $this->count(['rol_id' => ROLE_STUDENT])
         ];
     }
-    
-    public function buscar($termino, $rol = null) {
+
+    public function buscar($termino, $rol = null)
+    {
         $sql = "SELECT u.*, r.nombre as rol_nombre 
                 FROM usuarios u 
                 LEFT JOIN roles r ON u.rol_id = r.id 
                 WHERE (u.nombre LIKE ? OR u.apellido LIKE ? OR u.email LIKE ?)";
-        
+
         $params = ["%$termino%", "%$termino%", "%$termino%"];
-        
+
         if ($rol) {
             $sql .= " AND u.rol_id = ?";
             $params[] = $rol;
         }
-        
+
         $sql .= " ORDER BY u.nombre, u.apellido";
-        
+
         return $this->db->fetchAll($sql, $params);
     }
-    
-    public function activar($id) {
+
+    public function activar($id)
+    {
         return $this->update($id, ['estado' => 'activo']);
     }
-    
-    public function desactivar($id) {
+
+    public function desactivar($id)
+    {
         return $this->update($id, ['estado' => 'inactivo']);
     }
-    
-    public function obtenerCursosInscritos($usuarioId) {
+
+    public function obtenerCursosInscritos($usuarioId)
+    {
         return $this->db->fetchAll(
             "SELECT c.*, i.fecha_inscripcion, i.estado as estado_inscripcion
              FROM cursos c
@@ -87,8 +107,9 @@ class Usuario extends Model {
             [$usuarioId]
         );
     }
-    
-    public function obtenerCursosImpartidos($capacitadorId) {
+
+    public function obtenerCursosImpartidos($capacitadorId)
+    {
         return $this->db->fetchAll(
             "SELECT c.*, COUNT(i.id) as total_estudiantes
              FROM cursos c

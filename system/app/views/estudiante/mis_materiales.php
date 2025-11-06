@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Mis Materiales (Estudiante)
  * Descripción: Acceso a materiales de cursos inscritos
@@ -13,4 +14,3 @@
 // - Historial de descargas
 // - Búsqueda de materiales
 // - Marcadores/favoritos
-?>

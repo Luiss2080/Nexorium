@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Dashboard Administrador
  * Descripción: Panel principal del administrador con estadísticas y resumen
@@ -10,4 +11,3 @@
 // - Lista de actividades recientes
 // - Enlaces rápidos a funciones principales
 // - Widgets de información importante
-?>

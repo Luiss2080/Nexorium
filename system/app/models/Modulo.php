@@ -1,33 +1,44 @@
 <?php
+
 /**
  * Modelo Modulo
  */
-class Modulo extends Model {
+class Modulo extends Model
+{
     protected $table = 'modulos';
     protected $fillable = [
-        'titulo', 'descripcion', 'objetivos', 'curso_id', 'orden', 'duracion_estimada', 'estado'
+        'titulo',
+        'descripcion',
+        'objetivos',
+        'curso_id',
+        'orden',
+        'duracion_estimada',
+        'estado'
     ];
-    
-    public function obtenerPorCurso($cursoId) {
+
+    public function obtenerPorCurso($cursoId)
+    {
         return $this->where(['curso_id' => $cursoId, 'estado' => 'activo'], 'orden ASC');
     }
-    
-    public function obtenerConMateriales($moduloId) {
+
+    public function obtenerConMateriales($moduloId)
+    {
         $modulo = $this->find($moduloId);
         if (!$modulo) {
             return null;
         }
-        
+
         $materiales = $this->db->fetchAll(
             "SELECT * FROM materiales WHERE modulo_id = ? AND estado = 'activo' ORDER BY orden ASC",
             [$moduloId]
         );
-        
+
         $modulo['materiales'] = $materiales;
         return $modulo;
     }
-    
-    public function obtenerSiguiente($cursoId, $ordenActual) {
+
+    public function obtenerSiguiente($cursoId, $ordenActual)
+    {
         return $this->db->fetch(
             "SELECT * FROM modulos 
              WHERE curso_id = ? AND orden > ? AND estado = 'activo' 
@@ -35,8 +46,9 @@ class Modulo extends Model {
             [$cursoId, $ordenActual]
         );
     }
-    
-    public function obtenerAnterior($cursoId, $ordenActual) {
+
+    public function obtenerAnterior($cursoId, $ordenActual)
+    {
         return $this->db->fetch(
             "SELECT * FROM modulos 
              WHERE curso_id = ? AND orden < ? AND estado = 'activo' 
@@ -44,10 +56,11 @@ class Modulo extends Model {
             [$cursoId, $ordenActual]
         );
     }
-    
-    public function reordenar($cursoId, $nuevosOrdenes) {
+
+    public function reordenar($cursoId, $nuevosOrdenes)
+    {
         $this->db->beginTransaction();
-        
+
         try {
             foreach ($nuevosOrdenes as $moduloId => $nuevoOrden) {
                 $this->db->execute(
@@ -55,7 +68,7 @@ class Modulo extends Model {
                     [$nuevoOrden, $moduloId, $cursoId]
                 );
             }
-            
+
             $this->db->commit();
             return true;
         } catch (Exception $e) {
@@ -63,22 +76,23 @@ class Modulo extends Model {
             throw $e;
         }
     }
-    
-    public function duplicar($moduloId, $nuevoCursoId) {
+
+    public function duplicar($moduloId, $nuevoCursoId)
+    {
         $modulo = $this->find($moduloId);
         if (!$modulo) {
             return false;
         }
-        
+
         $this->db->beginTransaction();
-        
+
         try {
             // Obtener siguiente orden para el nuevo curso
             $siguienteOrden = $this->db->fetch(
                 "SELECT COALESCE(MAX(orden), 0) + 1 as siguiente_orden FROM modulos WHERE curso_id = ?",
                 [$nuevoCursoId]
             )['siguiente_orden'];
-            
+
             // Crear nuevo módulo
             $nuevoModuloId = $this->create([
                 'titulo' => $modulo['titulo'],
@@ -89,13 +103,13 @@ class Modulo extends Model {
                 'duracion_estimada' => $modulo['duracion_estimada'],
                 'estado' => 'activo'
             ]);
-            
+
             // Duplicar materiales del módulo
             $materiales = $this->db->fetchAll(
                 "SELECT * FROM materiales WHERE modulo_id = ? ORDER BY orden ASC",
                 [$moduloId]
             );
-            
+
             $materialModel = new Material();
             foreach ($materiales as $material) {
                 $materialModel->create([
@@ -111,7 +125,7 @@ class Modulo extends Model {
                     'estado' => 'activo'
                 ]);
             }
-            
+
             $this->db->commit();
             return $nuevoModuloId;
         } catch (Exception $e) {
@@ -119,22 +133,23 @@ class Modulo extends Model {
             throw $e;
         }
     }
-    
-    public function obtenerProgreso($moduloId, $usuarioId) {
+
+    public function obtenerProgreso($moduloId, $usuarioId)
+    {
         $totalMateriales = $this->db->fetch(
             "SELECT COUNT(*) as count FROM materiales WHERE modulo_id = ? AND estado = 'activo'",
             [$moduloId]
         )['count'];
-        
+
         $materialesVistos = $this->db->fetch(
             "SELECT COUNT(*) as count FROM material_progreso mp
              INNER JOIN materiales m ON mp.material_id = m.id
              WHERE m.modulo_id = ? AND mp.usuario_id = ?",
             [$moduloId, $usuarioId]
         )['count'];
-        
+
         $porcentaje = $totalMateriales > 0 ? ($materialesVistos / $totalMateriales) * 100 : 0;
-        
+
         return [
             'total_materiales' => $totalMateriales,
             'materiales_vistos' => $materialesVistos,
@@ -142,20 +157,22 @@ class Modulo extends Model {
             'completado' => $porcentaje >= 100
         ];
     }
-    
-    public function obtenerDuracionTotal($cursoId) {
+
+    public function obtenerDuracionTotal($cursoId)
+    {
         $resultado = $this->db->fetch(
             "SELECT SUM(duracion_estimada) as duracion_total FROM modulos 
              WHERE curso_id = ? AND estado = 'activo'",
             [$cursoId]
         );
-        
+
         return $resultado['duracion_total'] ?? 0;
     }
-    
-    public function eliminarConMateriales($moduloId) {
+
+    public function eliminarConMateriales($moduloId)
+    {
         $this->db->beginTransaction();
-        
+
         try {
             // Eliminar materiales del módulo
             $materialModel = new Material();
@@ -163,14 +180,14 @@ class Modulo extends Model {
                 "SELECT id FROM materiales WHERE modulo_id = ?",
                 [$moduloId]
             );
-            
+
             foreach ($materiales as $material) {
                 $materialModel->eliminarConArchivo($material['id']);
             }
-            
+
             // Eliminar el módulo
             $this->delete($moduloId);
-            
+
             $this->db->commit();
             return true;
         } catch (Exception $e) {

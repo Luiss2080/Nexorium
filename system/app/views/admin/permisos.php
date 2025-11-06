@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Gestión de Permisos y Roles
  * Descripción: Interfaz para configurar permisos del sistema
@@ -13,4 +14,3 @@
 // - Sincronización de permisos base
 // - Validaciones de seguridad
 // - Token CSRF
-?>

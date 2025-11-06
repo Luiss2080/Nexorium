@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Estudiantes (Capacitador)
  * Descripción: Gestión de estudiantes inscritos
@@ -13,4 +14,3 @@
 // - Comunicación directa
 // - Calificaciones y evaluaciones
 // - Exportar listados
-?>

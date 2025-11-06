@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Detalle del Curso (Capacitador)
  * Descripción: Vista detallada de un curso específico
@@ -12,4 +13,3 @@
 // - Progreso general del curso
 // - Herramientas de gestión
 // - Comunicación con estudiantes
-?>

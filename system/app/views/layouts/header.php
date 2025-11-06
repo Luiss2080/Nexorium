@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Header Global
  * Descripción: Componente de header reutilizable
@@ -11,4 +12,3 @@
 // - Notificaciones
 // - Búsqueda global
 // - Navegación específica por rol
-?>

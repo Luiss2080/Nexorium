@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Sidebar/Menú Lateral
  * Descripción: Navegación lateral según el rol
@@ -13,4 +14,3 @@
 //   * Admin: usuarios, cursos, reportes, configuración
 //   * Capacitador: mis cursos, materiales, estudiantes, asistencia
 //   * Estudiante: mis cursos, materiales, perfil
-?>

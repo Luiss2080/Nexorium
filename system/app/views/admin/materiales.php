@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Gestión de Materiales
  * Descripción: Vista general de todos los materiales del sistema
@@ -12,4 +13,3 @@
 // - Estados de materiales (público/privado)
 // - Búsqueda avanzada
 // - Estadísticas de uso
-?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Gestión de Cursos
  * Descripción: CRUD completo para gestión de cursos
@@ -14,4 +15,3 @@
 // - Asignación de capacitadores
 // - Gestión de inscripciones
 // - Token CSRF
-?>

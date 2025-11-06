@@ -1,16 +1,27 @@
 <?php
+
 /**
  * Modelo Curso
  */
-class Curso extends Model {
+class Curso extends Model
+{
     protected $table = 'cursos';
     protected $fillable = [
-        'titulo', 'descripcion', 'objetivos', 'duracion_horas', 
-        'fecha_inicio', 'fecha_fin', 'capacitador_id', 'max_estudiantes', 
-        'precio', 'estado', 'imagen'
+        'titulo',
+        'descripcion',
+        'objetivos',
+        'duracion_horas',
+        'fecha_inicio',
+        'fecha_fin',
+        'capacitador_id',
+        'max_estudiantes',
+        'precio',
+        'estado',
+        'imagen'
     ];
-    
-    public function obtenerConCapacitador($id) {
+
+    public function obtenerConCapacitador($id)
+    {
         return $this->db->fetch(
             "SELECT c.*, u.nombre as capacitador_nombre, u.apellido as capacitador_apellido
              FROM cursos c
@@ -19,8 +30,9 @@ class Curso extends Model {
             [$id]
         );
     }
-    
-    public function obtenerTodosConCapacitador() {
+
+    public function obtenerTodosConCapacitador()
+    {
         return $this->db->fetchAll(
             "SELECT c.*, u.nombre as capacitador_nombre, u.apellido as capacitador_apellido,
                     COUNT(i.id) as total_inscritos
@@ -31,8 +43,9 @@ class Curso extends Model {
              ORDER BY c.fecha_inicio DESC"
         );
     }
-    
-    public function obtenerPorCapacitador($capacitadorId) {
+
+    public function obtenerPorCapacitador($capacitadorId)
+    {
         return $this->db->fetchAll(
             "SELECT c.*, COUNT(i.id) as total_inscritos
              FROM cursos c
@@ -43,8 +56,9 @@ class Curso extends Model {
             [$capacitadorId]
         );
     }
-    
-    public function obtenerDisponibles() {
+
+    public function obtenerDisponibles()
+    {
         return $this->db->fetchAll(
             "SELECT c.*, u.nombre as capacitador_nombre, u.apellido as capacitador_apellido,
                     COUNT(i.id) as total_inscritos
@@ -57,8 +71,9 @@ class Curso extends Model {
              ORDER BY c.fecha_inicio ASC"
         );
     }
-    
-    public function obtenerEstudiantesInscritos($cursoId) {
+
+    public function obtenerEstudiantesInscritos($cursoId)
+    {
         return $this->db->fetchAll(
             "SELECT u.*, i.fecha_inscripcion, i.estado as estado_inscripcion
              FROM usuarios u
@@ -68,15 +83,17 @@ class Curso extends Model {
             [$cursoId]
         );
     }
-    
-    public function obtenerModulos($cursoId) {
+
+    public function obtenerModulos($cursoId)
+    {
         return $this->db->fetchAll(
             "SELECT * FROM modulos WHERE curso_id = ? ORDER BY orden ASC",
             [$cursoId]
         );
     }
-    
-    public function obtenerMateriales($cursoId) {
+
+    public function obtenerMateriales($cursoId)
+    {
         return $this->db->fetchAll(
             "SELECT m.*, mo.titulo as modulo_titulo
              FROM materiales m
@@ -86,14 +103,15 @@ class Curso extends Model {
             [$cursoId]
         );
     }
-    
-    public function puedeInscribirse($cursoId, $usuarioId) {
+
+    public function puedeInscribirse($cursoId, $usuarioId)
+    {
         // Verificar si el curso está disponible
         $curso = $this->find($cursoId);
         if (!$curso || $curso['estado'] !== 'activo' || $curso['fecha_inicio'] <= date('Y-m-d H:i:s')) {
             return false;
         }
-        
+
         // Verificar si ya está inscrito
         $inscripcion = $this->db->fetch(
             "SELECT id FROM inscripciones WHERE curso_id = ? AND usuario_id = ? AND estado = 'activa'",
@@ -102,17 +120,18 @@ class Curso extends Model {
         if ($inscripcion) {
             return false;
         }
-        
+
         // Verificar capacidad
         $inscritos = $this->db->fetch(
             "SELECT COUNT(*) as total FROM inscripciones WHERE curso_id = ? AND estado = 'activa'",
             [$cursoId]
         );
-        
+
         return $inscritos['total'] < $curso['max_estudiantes'];
     }
-    
-    public function obtenerEstadisticas() {
+
+    public function obtenerEstadisticas()
+    {
         return [
             'total' => $this->count(),
             'activos' => $this->count(['estado' => 'activo']),
@@ -125,8 +144,9 @@ class Curso extends Model {
             )['count']
         ];
     }
-    
-    public function buscar($termino) {
+
+    public function buscar($termino)
+    {
         return $this->db->fetchAll(
             "SELECT c.*, u.nombre as capacitador_nombre, u.apellido as capacitador_apellido
              FROM cursos c

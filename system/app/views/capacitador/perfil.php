@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Perfil del Capacitador
  * Descripción: Gestión del perfil personal del capacitador
@@ -14,4 +15,3 @@
 // - Estadísticas de capacitación
 // - Portafolio de cursos
 // - Token CSRF
-?>

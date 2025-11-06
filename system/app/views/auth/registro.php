@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Registro
  * Descripción: Formulario de registro de nuevos usuarios
@@ -10,4 +11,3 @@
 // - Verificación de fortaleza de contraseña
 // - Términos y condiciones
 // - Token CSRF
-?>

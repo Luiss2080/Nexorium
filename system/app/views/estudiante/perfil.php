@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Vista: Perfil del Estudiante
  * Descripción: Gestión del perfil personal del estudiante
@@ -14,4 +15,3 @@
 // - Certificados obtenidos
 // - Configuraciones de privacidad
 // - Token CSRF
-?>
