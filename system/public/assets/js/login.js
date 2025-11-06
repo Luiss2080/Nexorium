@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeFormValidation();
   initializePasswordToggle();
   initializeAnimations();
-  initializeDemoCredentials();
   initializeSocialLinks();
   initializeCounters();
 
@@ -351,65 +350,6 @@ function initializeCounters() {
 }
 
 // =============================================================================
-// CREDENCIALES DE DEMO
-// =============================================================================
-
-function initializeDemoCredentials() {
-  const demoFillBtn = document.getElementById("demoFillBtn");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-
-  if (!demoFillBtn || !emailInput || !passwordInput) return;
-
-  demoFillBtn.addEventListener("click", function () {
-    // Animación de llenado
-    emailInput.value = "";
-    passwordInput.value = "";
-
-    // Typing effect para el email
-    typeText(emailInput, "admin@nexorium.com", 50);
-
-    // Typing effect para la contraseña (con delay)
-    setTimeout(() => {
-      typeText(passwordInput, "admin123", 80);
-    }, 1000);
-
-    // Feedback visual
-    this.style.transform = "scale(0.95)";
-    this.textContent = "Llenando...";
-
-    setTimeout(() => {
-      this.style.transform = "scale(1)";
-      this.textContent = "Llenar automáticamente";
-
-      // Validar campos después del llenado
-      setTimeout(() => {
-        validateEmail(emailInput);
-        validatePassword(passwordInput);
-      }, 2000);
-    }, 2000);
-  });
-}
-
-function typeText(element, text, speed) {
-  let i = 0;
-  element.focus();
-
-  function type() {
-    if (i < text.length) {
-      element.value += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-
-      // Trigger input event para validaciones
-      element.dispatchEvent(new Event("input"));
-    }
-  }
-
-  type();
-}
-
-// =============================================================================
 // LOGIN SOCIAL
 // =============================================================================
 
@@ -458,6 +398,26 @@ function handleSocialLink(platform) {
       message =
         "💬 Nuestro equipo de soporte está disponible 24/7 para resolver tus dudas de trading.";
       action = "Contactar Soporte";
+      break;
+    case "tiktok":
+      message =
+        "🎵 Síguenos en TikTok para tips rápidos de trading y contenido exclusivo.";
+      action = "Seguir en TikTok";
+      break;
+    case "facebook":
+      message =
+        "📘 Únete a nuestra comunidad en Facebook para análisis de mercado y noticias.";
+      action = "Seguir en Facebook";
+      break;
+    case "instagram":
+      message =
+        "📷 Sigue nuestro Instagram para gráficos de trading y contenido visual.";
+      action = "Seguir en Instagram";
+      break;
+    case "whatsapp":
+      message =
+        "💬 Contacta directamente con nuestro equipo vía WhatsApp para soporte inmediato.";
+      action = "Contactar por WhatsApp";
       break;
     default:
       return;

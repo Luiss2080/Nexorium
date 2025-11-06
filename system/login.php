@@ -84,220 +84,209 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="bg-grid"></div>
     </div>
 
-    <!-- Contenedor principal -->
-    <div class="login-container">
+    <!-- Contenedor principal flotante -->
+    <div class="main-login-wrapper">
+        <div class="floating-container">
 
-        <!-- Panel Izquierdo - Branding Profesional -->
-        <div class="login-branding">
-            <!-- Efectos de background -->
-            <div class="branding-effects">
-                <div class="gradient-mesh"></div>
-                <div class="floating-elements">
-                    <div class="float-element element-1"></div>
-                    <div class="float-element element-2"></div>
-                    <div class="float-element element-3"></div>
-                </div>
-            </div>
-
-            <div class="branding-content">
-                <!-- Logo y marca - Diseño profesional -->
-                <div class="brand-section">
-                    <div class="logo-container">
-                        <div class="logo-backdrop"></div>
-                        <img src="http://localhost/Nexorium/website/public/images/LogoNexorium.png" alt="NEXORIUM" class="brand-logo">
-                    </div>
-                    <div class="brand-text">
-                        <h1 class="brand-title">NEXORIUM</h1>
-                        <div class="brand-line"></div>
-                        <span class="brand-subtitle">TRADING ACADEMY</span>
+            <!-- Panel Izquierdo - Branding Profesional -->
+            <div class="login-branding">
+                <!-- Efectos de background -->
+                <div class="branding-effects">
+                    <div class="gradient-mesh"></div>
+                    <div class="floating-elements">
+                        <div class="float-element element-1"></div>
+                        <div class="float-element element-2"></div>
+                        <div class="float-element element-3"></div>
                     </div>
                 </div>
 
-                <!-- Mensaje profesional -->
-                <div class="welcome-section">
-                    <h2 class="welcome-title">¡Bienvenido!</h2>
-                    <p class="welcome-description">
-                        Inicia sesión con tu cuenta académica y accede a la plataforma profesional de trading diseñada para traders de élite que buscan excelencia en los mercados financieros.
-                    </p>
-                </div>
-
-                <!-- Features destacadas -->
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <div class="feature-content">
-                            <span class="feature-title">Análisis Pro</span>
-                            <span class="feature-desc">Herramientas avanzadas</span>
+                <div class="branding-content">
+                    <!-- Logo y marca - Diseño profesional -->
+                    <div class="brand-section">
+                        <div class="logo-container">
+                            <div class="logo-backdrop"></div>
+                            <img src="http://localhost/Nexorium/website/public/images/LogoNexorium.png" alt="NEXORIUM" class="brand-logo">
+                        </div>
+                        <div class="brand-text">
+                            <h1 class="brand-title">NEXORIUM</h1>
+                            <div class="brand-line"></div>
+                            <span class="brand-subtitle">TRADING ACADEMY</span>
                         </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <div class="feature-content">
-                            <span class="feature-title">Señales Premium</span>
-                            <span class="feature-desc">Alta precisión</span>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <div class="feature-content">
-                            <span class="feature-title">Trading Elite</span>
-                            <span class="feature-desc">Resultados superiores</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Sección derecha - Formulario de login -->
-        <div class="login-form-section">
-            <div class="form-container">
-
-                <!-- Header del formulario -->
-                <div class="form-header">
-                    <h2 class="form-title">Iniciar Sesión</h2>
-                    <p class="form-subtitle">Ingresa tus credenciales para continuar</p>
-                </div>
-
-                <!-- Mensajes de error/éxito -->
-                <?php if (!empty($error_message)): ?>
-                    <div class="alert alert-error">
-                        <div class="alert-icon">⚠️</div>
-                        <div class="alert-message"><?php echo htmlspecialchars($error_message); ?></div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (!empty($success_message)): ?>
-                    <div class="alert alert-success">
-                        <div class="alert-icon">✅</div>
-                        <div class="alert-message"><?php echo htmlspecialchars($success_message); ?></div>
-                    </div>
-                <?php endif; ?>
-
-                <!-- Formulario de login -->
-                <form class="login-form" method="POST" action="" id="loginForm">
-
-                    <!-- Campo Email -->
-                    <div class="input-group">
-                        <label for="email" class="input-label">Correo Electrónico</label>
-                        <div class="input-wrapper">
-                            <div class="input-icon">📧</div>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="form-input"
-                                placeholder="trader@nexorium.com"
-                                value="<?php echo htmlspecialchars($email ?? ''); ?>"
-                                required
-                                autocomplete="email">
-                        </div>
-                        <div class="input-error" id="emailError"></div>
-                    </div>
-
-                    <!-- Campo Contraseña -->
-                    <div class="input-group">
-                        <label for="password" class="input-label">Contraseña</label>
-                        <div class="input-wrapper">
-                            <div class="input-icon">🔒</div>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                class="form-input"
-                                placeholder="••••••••••"
-                                required
-                                autocomplete="current-password">
-                            <button type="button" class="password-toggle" id="passwordToggle">
-                                <span class="toggle-icon">👁️</span>
-                            </button>
-                        </div>
-                        <div class="input-error" id="passwordError"></div>
-                    </div>
-
-                    <!-- Recordar y Olvidé contraseña -->
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="remember" id="remember" class="checkbox-input">
-                            <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">Recordarme</span>
-                        </label>
-                        <a href="#" class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
-                    </div>
-
-                    <!-- Botón de submit -->
-                    <button type="submit" class="login-button btn-nexorium" id="loginButton">
-                        <span class="button-text">� ACCESO TRADING</span>
-                        <span class="button-loader" id="buttonLoader">
-                            <div class="loader-spinner"></div>
-                        </span>
-                    </button>
-
-                </form>
-
-                <!-- Footer del formulario -->
-                <div class="form-footer">
-                    <p class="register-text">
-                        ¿Quieres unirte a la élite del trading?
-                        <a href="#" class="register-link" id="registerLink">¡Solicita tu acceso VIP!</a>
-                    </p>
-
-                    <!-- Social Media Links -->
-                    <div class="social-media-links">
-                        <a href="#" class="social-link trading-signals" title="Señales de Trading">
-                            <div class="social-icon">📈</div>
-                            <span>Señales VIP</span>
-                        </a>
-                        <a href="#" class="social-link academy" title="Academia">
-                            <div class="social-icon">🎓</div>
-                            <span>Academia Pro</span>
-                        </a>
-                        <a href="#" class="social-link community" title="Comunidad">
-                            <div class="social-icon">�</div>
-                            <span>Comunidad</span>
-                        </a>
-                        <a href="#" class="social-link support" title="Soporte">
-                            <div class="social-icon">💬</div>
-                            <span>Soporte 24/7</span>
-                        </a>
-                    </div>
-
-                    <!-- Register Link -->
-                    <div class="register-section">
-                        <p class="no-account-text">¿No tienes cuenta de trading?
-                            <a href="#" class="register-link-main" id="registerMainLink">¡Solicita acceso exclusivo!</a>
+                    <!-- Mensaje profesional -->
+                    <div class="welcome-section">
+                        <h2 class="welcome-title">¡Bienvenido!</h2>
+                        <p class="welcome-description">
+                            Inicia sesión con tu cuenta académica y accede a la plataforma profesional de trading diseñada para traders de élite que buscan excelencia en los mercados financieros.
                         </p>
                     </div>
 
-                    <!-- Links adicionales -->
-                    <div class="additional-links">
-                        <a href="http://localhost/Nexorium/website/" class="back-link">
-                            ← Volver al sitio web
-                        </a>
-                        <span class="link-separator">|</span>
-                        <a href="#" class="support-link">Mesa de ayuda</a>
+                    <!-- Sección de redes sociales -->
+                    <div class="social-section">
+                        <p class="social-text">¿Tienes dudas o quieres saber más?</p>
+                        <p class="social-title">¡Contáctate con nosotros!</p>
+                        <div class="social-media-links">
+                            <a href="#" class="social-link tiktok" title="TikTok">
+                                <div class="social-icon">🎵</div>
+                                <span>TikTok</span>
+                            </a>
+                            <a href="#" class="social-link facebook" title="Facebook">
+                                <div class="social-icon">📘</div>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="#" class="social-link instagram" title="Instagram">
+                                <div class="social-icon">📷</div>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="#" class="social-link whatsapp" title="WhatsApp">
+                                <div class="social-icon">💬</div>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección derecha - Formulario de login -->
+            <div class="login-form-section">
+                <!-- Líneas decorativas -->
+                <div class="form-lines">
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line line-3"></div>
+                </div>
+
+                <!-- Partículas decorativas -->
+                <div class="form-particles">
+                    <div class="particle particle-1"></div>
+                    <div class="particle particle-2"></div>
+                    <div class="particle particle-3"></div>
+                    <div class="particle particle-4"></div>
+                </div>
+
+                <div class="form-container"> <!-- Header del formulario -->
+                    <div class="form-header">
+                        <h2 class="form-title">Iniciar Sesión</h2>
+                        <p class="form-subtitle">Ingresa tus credenciales para continuar</p>
+                    </div>
+
+                    <!-- Mensajes de error/éxito -->
+                    <?php if (!empty($error_message)): ?>
+                        <div class="alert alert-error">
+                            <div class="alert-icon">⚠️</div>
+                            <div class="alert-message"><?php echo htmlspecialchars($error_message); ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($success_message)): ?>
+                        <div class="alert alert-success">
+                            <div class="alert-icon">✅</div>
+                            <div class="alert-message"><?php echo htmlspecialchars($success_message); ?></div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Formulario de login -->
+                    <form class="login-form" method="POST" action="" id="loginForm">
+
+                        <!-- Campo Email -->
+                        <div class="input-group">
+                            <label for="email" class="input-label">Correo Electrónico</label>
+                            <div class="input-wrapper">
+                                <div class="input-icon">📧</div>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-input"
+                                    placeholder="trader@nexorium.com"
+                                    value="<?php echo htmlspecialchars($email ?? ''); ?>"
+                                    required
+                                    autocomplete="email">
+                            </div>
+                            <div class="input-error" id="emailError"></div>
+                        </div>
+
+                        <!-- Campo Contraseña -->
+                        <div class="input-group">
+                            <label for="password" class="input-label">Contraseña</label>
+                            <div class="input-wrapper">
+                                <div class="input-icon">🔒</div>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-input"
+                                    placeholder="••••••••••"
+                                    required
+                                    autocomplete="current-password">
+                                <button type="button" class="password-toggle" id="passwordToggle">
+                                    <span class="toggle-icon">👁️</span>
+                                </button>
+                            </div>
+                            <div class="input-error" id="passwordError"></div>
+                        </div>
+
+                        <!-- Recordar y Olvidé contraseña -->
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember" id="remember" class="checkbox-input">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Recordarme</span>
+                            </label>
+                            <a href="#" class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <!-- Botón de submit -->
+                        <button type="submit" class="login-button btn-nexorium" id="loginButton">
+                            <span class="button-text">� ACCESO TRADING</span>
+                            <span class="button-loader" id="buttonLoader">
+                                <div class="loader-spinner"></div>
+                            </span>
+                        </button>
+
+                    </form>
+
+                    <!-- Footer del formulario -->
+                    <div class="form-footer">
+                        <p class="register-text">
+                            ¿Quieres unirte a la élite del trading?
+                            <a href="#" class="register-link" id="registerLink">¡Solicita tu acceso VIP!</a>
+                        </p>
+
+                        <!-- Social Media Links -->
+                        <div class="social-media-links">
+                            <a href="#" class="social-link trading-signals" title="Señales de Trading">
+                                <div class="social-icon">📈</div>
+                                <span>Señales VIP</span>
+                            </a>
+                            <a href="#" class="social-link academy" title="Academia">
+                                <div class="social-icon">🎓</div>
+                                <span>Academia Pro</span>
+                            </a>
+                            <a href="#" class="social-link community" title="Comunidad">
+                                <div class="social-icon">�</div>
+                                <span>Comunidad</span>
+                            </a>
+                            <a href="#" class="social-link support" title="Soporte">
+                                <div class="social-icon">💬</div>
+                                <span>Soporte 24/7</span>
+                            </a>
+                        </div>
+
+                        <!-- Register Link -->
+                        <div class="register-section">
+                            <p class="no-account-text">¿No tienes cuenta de trading?
+                                <a href="#" class="register-link-main" id="registerMainLink">¡Solicita acceso exclusivo!</a>
+                            </p>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
-
-            <!-- Información de contacto -->
-            <div class="contact-info">
-                <div class="contact-item">
-                    <strong>¿Necesitas ayuda para acceder?</strong>
-                    <span>Contacta a nuestro equipo de soporte: support@nexorium.com</span>
-                </div>
-            </div>
-
         </div>
 
-    </div>
-
-    <!-- Credenciales de demo (solo para desarrollo) -->
-    <div class="demo-credentials">
-        <h4>� Acceso Demo - Trading Academy:</h4>
-        <p><strong>Email:</strong> admin@nexorium.com</p>
-        <p><strong>Contraseña:</strong> admin123</p>
-        <button class="demo-fill-btn" id="demoFillBtn">Acceder con Demo</button>
     </div>
 
     <!-- JavaScript -->
