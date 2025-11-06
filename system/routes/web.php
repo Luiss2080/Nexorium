@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Archivo de rutas del sistema
  */
@@ -13,10 +14,10 @@ $routes = [
     'POST|auth/registro' => 'AuthController@register',
     'GET|auth/recuperar' => 'AuthController@showRecover',
     'POST|auth/recuperar' => 'AuthController@recover',
-    
+
     // Dashboard routes
     'GET|dashboard' => 'DashboardController@index',
-    
+
     // Admin routes
     'GET|admin/dashboard' => 'AdminController@dashboard',
     'GET|admin/usuarios' => 'AdminController@usuarios',
@@ -34,7 +35,7 @@ $routes = [
     'POST|admin/configuracion' => 'AdminController@guardarConfiguracion',
     'GET|admin/perfil' => 'AdminController@perfil',
     'POST|admin/perfil' => 'AdminController@actualizarPerfil',
-    
+
     // Capacitador routes
     'GET|capacitador/dashboard' => 'CapacitadorController@dashboard',
     'GET|capacitador/mis-cursos' => 'CapacitadorController@misCursos',
@@ -47,7 +48,7 @@ $routes = [
     'POST|capacitador/asistencia' => 'CapacitadorController@registrarAsistencia',
     'GET|capacitador/perfil' => 'CapacitadorController@perfil',
     'POST|capacitador/perfil' => 'CapacitadorController@actualizarPerfil',
-    
+
     // Estudiante routes
     'GET|estudiante/dashboard' => 'EstudianteController@dashboard',
     'GET|estudiante/mis-cursos' => 'EstudianteController@misCursos',
@@ -57,12 +58,12 @@ $routes = [
     'GET|estudiante/descargar/{id}' => 'EstudianteController@descargarMaterial',
     'GET|estudiante/perfil' => 'EstudianteController@perfil',
     'POST|estudiante/perfil' => 'EstudianteController@actualizarPerfil',
-    
+
     // API routes (para AJAX)
     'GET|api/cursos' => 'CursoController@listar',
     'GET|api/usuarios' => 'UsuarioController@listar',
     'GET|api/materiales/{curso_id}' => 'MaterialController@listarPorCurso',
-    
+
     // Rutas por defecto
     'GET|' => 'DashboardController@index',
     'GET|/' => 'DashboardController@index',

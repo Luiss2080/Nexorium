@@ -1,12 +1,15 @@
 <?php
+
 /**
  * Clase Database - Manejo de conexión PDO
  */
-class Database {
+class Database
+{
     private static $instance = null;
     private $connection;
-    
-    private function __construct() {
+
+    private function __construct()
+    {
         try {
             $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $this->connection = new PDO($dsn, DB_USER, DB_PASS, [
@@ -18,19 +21,22 @@ class Database {
             die("Error de conexión: " . $e->getMessage());
         }
     }
-    
-    public static function getInstance() {
+
+    public static function getInstance()
+    {
         if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
     }
-    
-    public function getConnection() {
+
+    public function getConnection()
+    {
         return $this->connection;
     }
-    
-    public function query($sql, $params = []) {
+
+    public function query($sql, $params = [])
+    {
         try {
             $stmt = $this->connection->prepare($sql);
             $stmt->execute($params);
@@ -40,32 +46,39 @@ class Database {
             throw $e;
         }
     }
-    
-    public function fetch($sql, $params = []) {
+
+    public function fetch($sql, $params = [])
+    {
         return $this->query($sql, $params)->fetch();
     }
-    
-    public function fetchAll($sql, $params = []) {
+
+    public function fetchAll($sql, $params = [])
+    {
         return $this->query($sql, $params)->fetchAll();
     }
-    
-    public function execute($sql, $params = []) {
+
+    public function execute($sql, $params = [])
+    {
         return $this->query($sql, $params)->rowCount();
     }
-    
-    public function lastInsertId() {
+
+    public function lastInsertId()
+    {
         return $this->connection->lastInsertId();
     }
-    
-    public function beginTransaction() {
+
+    public function beginTransaction()
+    {
         return $this->connection->beginTransaction();
     }
-    
-    public function commit() {
+
+    public function commit()
+    {
         return $this->connection->commit();
     }
-    
-    public function rollback() {
+
+    public function rollback()
+    {
         return $this->connection->rollback();
     }
 }

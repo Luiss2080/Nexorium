@@ -1,15 +1,19 @@
 <?php
+
 /**
  * Clase Auth - Manejo de autenticación y autorización
  */
-class Auth {
+class Auth
+{
     private $db;
-    
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->db = Database::getInstance();
     }
-    
-    public function login($email, $password) {
+
+    public function login($email, $password)
+    {
         try {
             $user = $this->db->fetch(
                 "SELECT u.*, r.nombre as rol_nombre, r.id as rol_id 
@@ -18,35 +22,38 @@ class Auth {
                  WHERE u.email = ? AND u.estado = 'activo'",
                 [$email]
             );
-            
+
             if ($user && password_verify($password, $user['password'])) {
                 $this->setUserSession($user);
                 $this->updateLastLogin($user['id']);
                 return true;
             }
-            
+
             return false;
         } catch (Exception $e) {
             error_log("Login error: " . $e->getMessage());
             return false;
         }
     }
-    
-    public function logout() {
+
+    public function logout()
+    {
         session_destroy();
         session_start();
         session_regenerate_id(true);
     }
-    
-    public function isLoggedIn() {
+
+    public function isLoggedIn()
+    {
         return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
     }
-    
-    public function getUser() {
+
+    public function getUser()
+    {
         if (!$this->isLoggedIn()) {
             return null;
         }
-        
+
         return [
             'id' => $_SESSION['user_id'],
             'nombre' => $_SESSION['user_nombre'],
@@ -55,29 +62,32 @@ class Auth {
             'rol_nombre' => $_SESSION['user_rol_nombre']
         ];
     }
-    
-    public function getUserId() {
+
+    public function getUserId()
+    {
         return $_SESSION['user_id'] ?? null;
     }
-    
-    public function hasRole($roles) {
+
+    public function hasRole($roles)
+    {
         if (!$this->isLoggedIn()) {
             return false;
         }
-        
+
         if (is_string($roles)) {
             $roles = [$roles];
         }
-        
+
         $userRole = $_SESSION['user_rol_nombre'] ?? '';
         return in_array($userRole, $roles);
     }
-    
-    public function hasPermission($permission) {
+
+    public function hasPermission($permission)
+    {
         if (!$this->isLoggedIn()) {
             return false;
         }
-        
+
         $userId = $this->getUserId();
         $hasPermission = $this->db->fetch(
             "SELECT COUNT(*) as count 
@@ -86,17 +96,18 @@ class Auth {
              WHERE pu.usuario_id = ? AND p.nombre = ?",
             [$userId, $permission]
         );
-        
+
         return $hasPermission['count'] > 0;
     }
-    
-    public function getDashboardRoute() {
+
+    public function getDashboardRoute()
+    {
         if (!$this->isLoggedIn()) {
             return '/auth/login';
         }
-        
+
         $role = $_SESSION['user_rol_nombre'] ?? '';
-        
+
         switch ($role) {
             case 'admin':
                 return '/admin/dashboard';
@@ -108,51 +119,56 @@ class Auth {
                 return '/auth/login';
         }
     }
-    
-    private function setUserSession($user) {
+
+    private function setUserSession($user)
+    {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_nombre'] = $user['nombre'];
         $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_rol_id'] = $user['rol_id'];
         $_SESSION['user_rol_nombre'] = $user['rol_nombre'];
-        
+
         session_regenerate_id(true);
     }
-    
-    private function updateLastLogin($userId) {
+
+    private function updateLastLogin($userId)
+    {
         $this->db->execute(
             "UPDATE usuarios SET ultimo_acceso = NOW() WHERE id = ?",
             [$userId]
         );
     }
-    
-    public function hashPassword($password) {
+
+    public function hashPassword($password)
+    {
         return password_hash($password, HASH_ALGO);
     }
-    
-    public function generateToken($length = 32) {
+
+    public function generateToken($length = 32)
+    {
         return bin2hex(random_bytes($length));
     }
-    
-    public function checkPasswordStrength($password) {
+
+    public function checkPasswordStrength($password)
+    {
         $errors = [];
-        
+
         if (strlen($password) < 8) {
             $errors[] = "La contraseña debe tener al menos 8 caracteres";
         }
-        
+
         if (!preg_match('/[A-Z]/', $password)) {
             $errors[] = "La contraseña debe contener al menos una letra mayúscula";
         }
-        
+
         if (!preg_match('/[a-z]/', $password)) {
             $errors[] = "La contraseña debe contener al menos una letra minúscula";
         }
-        
+
         if (!preg_match('/[0-9]/', $password)) {
             $errors[] = "La contraseña debe contener al menos un número";
         }
-        
+
         return $errors;
     }
 }

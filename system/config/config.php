@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuración principal del sistema Nexorium
  */

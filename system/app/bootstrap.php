@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap del sistema - Archivo de inicialización
  */
@@ -14,7 +15,7 @@ spl_autoload_register(function ($class) {
         APP_PATH . 'models/',
         APP_PATH . 'middlewares/'
     ];
-    
+
     foreach ($paths as $path) {
         $file = $path . $class . '.php';
         if (file_exists($file)) {
@@ -28,13 +29,13 @@ spl_autoload_register(function ($class) {
 require_once APP_PATH . 'helpers/funciones.php';
 
 // Manejo de errores
-set_error_handler(function($severity, $message, $file, $line) {
+set_error_handler(function ($severity, $message, $file, $line) {
     if (!(error_reporting() & $severity)) {
         return false;
     }
-    
+
     $errorMessage = "Error: $message en $file línea $line";
-    
+
     if (DEBUG_MODE) {
         echo "<div style='color: red; background: #fff; padding: 10px; border: 1px solid red; margin: 10px;'>";
         echo "<strong>Error:</strong> $message<br>";
@@ -42,16 +43,16 @@ set_error_handler(function($severity, $message, $file, $line) {
         echo "<strong>Línea:</strong> $line<br>";
         echo "</div>";
     }
-    
+
     error_log($errorMessage);
     return true;
 });
 
 // Manejo de excepciones
-set_exception_handler(function($exception) {
-    $errorMessage = "Excepción no capturada: " . $exception->getMessage() . 
-                   " en " . $exception->getFile() . " línea " . $exception->getLine();
-    
+set_exception_handler(function ($exception) {
+    $errorMessage = "Excepción no capturada: " . $exception->getMessage() .
+        " en " . $exception->getFile() . " línea " . $exception->getLine();
+
     if (DEBUG_MODE) {
         echo "<div style='color: red; background: #fff; padding: 10px; border: 1px solid red; margin: 10px;'>";
         echo "<strong>Excepción:</strong> " . $exception->getMessage() . "<br>";
@@ -63,7 +64,7 @@ set_exception_handler(function($exception) {
     } else {
         echo "Ha ocurrido un error interno. Por favor, inténtelo más tarde.";
     }
-    
+
     error_log($errorMessage);
 });
 

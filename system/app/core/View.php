@@ -1,23 +1,27 @@
 <?php
+
 /**
  * Clase View - Manejo de vistas y layouts
  */
-class View {
+class View
+{
     private $data = [];
     private $layout = 'layouts/main';
-    
-    public function __construct($data = []) {
+
+    public function __construct($data = [])
+    {
         $this->data = $data;
     }
-    
-    public function render($view, $data = []) {
+
+    public function render($view, $data = [])
+    {
         $this->data = array_merge($this->data, $data);
-        
+
         // Capturar el contenido de la vista
         ob_start();
         $this->includeView($view);
         $content = ob_get_clean();
-        
+
         // Si hay un layout, renderizar con el layout
         if ($this->layout) {
             $this->data['content'] = $content;
@@ -26,85 +30,100 @@ class View {
             echo $content;
         }
     }
-    
-    public function setLayout($layout) {
+
+    public function setLayout($layout)
+    {
         $this->layout = $layout;
         return $this;
     }
-    
-    public function withoutLayout() {
+
+    public function withoutLayout()
+    {
         $this->layout = null;
         return $this;
     }
-    
-    private function includeView($view) {
+
+    private function includeView($view)
+    {
         $viewPath = APP_PATH . 'views/' . $view . '.php';
-        
+
         if (!file_exists($viewPath)) {
             throw new Exception("Vista no encontrada: $view");
         }
-        
+
         extract($this->data);
         include $viewPath;
     }
-    
-    public function partial($view, $data = []) {
+
+    public function partial($view, $data = [])
+    {
         $partialData = array_merge($this->data, $data);
         $viewPath = APP_PATH . 'views/' . $view . '.php';
-        
+
         if (!file_exists($viewPath)) {
             throw new Exception("Partial no encontrado: $view");
         }
-        
+
         extract($partialData);
         include $viewPath;
     }
-    
-    public function escape($string) {
+
+    public function escape($string)
+    {
         return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
     }
-    
-    public function url($path = '') {
+
+    public function url($path = '')
+    {
         return SYSTEM_URL . ltrim($path, '/');
     }
-    
-    public function asset($path) {
+
+    public function asset($path)
+    {
         return ASSETS_URL . ltrim($path, '/');
     }
-    
-    public function csrf() {
+
+    public function csrf()
+    {
         return $_SESSION['csrf_token'] ?? '';
     }
-    
-    public function old($key, $default = '') {
+
+    public function old($key, $default = '')
+    {
         return $_SESSION['old'][$key] ?? $default;
     }
-    
-    public function error($key) {
+
+    public function error($key)
+    {
         return $_SESSION['errors'][$key] ?? '';
     }
-    
-    public function hasError($key) {
+
+    public function hasError($key)
+    {
         return isset($_SESSION['errors'][$key]);
     }
-    
-    public function flash($key, $default = '') {
+
+    public function flash($key, $default = '')
+    {
         $value = $_SESSION['flash'][$key] ?? $default;
         unset($_SESSION['flash'][$key]);
         return $value;
     }
-    
-    public function formatDate($date, $format = 'd/m/Y') {
+
+    public function formatDate($date, $format = 'd/m/Y')
+    {
         if (!$date) return '';
         return date($format, strtotime($date));
     }
-    
-    public function formatDateTime($datetime, $format = 'd/m/Y H:i') {
+
+    public function formatDateTime($datetime, $format = 'd/m/Y H:i')
+    {
         if (!$datetime) return '';
         return date($format, strtotime($datetime));
     }
-    
-    public function truncate($string, $length = 100, $suffix = '...') {
+
+    public function truncate($string, $length = 100, $suffix = '...')
+    {
         if (strlen($string) <= $length) {
             return $string;
         }
