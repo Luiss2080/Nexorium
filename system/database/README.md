@@ -26,26 +26,44 @@ Cada archivo contiene la definición de una tabla específica:
 
 ### Seeds (`seeds/`)
 
-Cada archivo contiene datos iniciales para cada tabla:
+Cada archivo contiene datos iniciales numerados igual que las migraciones:
 
-- `roles_seed.sql` - Roles básicos del sistema
-- `usuarios_seed.sql` - Usuario administrador inicial
-- `perfiles_seed.sql` - Perfiles de usuarios de ejemplo
-- `permisos_seed.sql` - Permisos del sistema
-- `rol_permisos_seed.sql` - Asignación de permisos a roles
-- `categorias_cursos_seed.sql` - Categorías de cursos
-- `cursos_seed.sql` - Cursos de ejemplo
-- `modulos_seed.sql` - Módulos de ejemplo
-- `inscripciones_seed.sql` - Inscripciones de ejemplo
-- `configuraciones_seed.sql` - Configuraciones iniciales
+- `001_create_roles.sql` - Roles básicos del sistema
+- `002_create_usuarios.sql` - Usuario administrador inicial  
+- `003_create_perfiles.sql` - Perfiles de usuarios de ejemplo
+- `004_create_permisos.sql` - Permisos del sistema
+- `005_create_rol_permisos.sql` - Asignación de permisos a roles
+- `006_create_permisos_usuario.sql` - Permisos específicos (vacío)
+- `007_create_categorias_cursos.sql` - Categorías de trading
+- `008_create_cursos.sql` - Cursos de ejemplo
+- `009_create_modulos.sql` - Módulos de ejemplo
+- `010_create_materiales.sql` - Materiales (vacío inicialmente)
+- `011_create_inscripciones.sql` - Inscripciones de ejemplo
+- `012_create_asistencias.sql` - Asistencias (vacío inicialmente)
+- `013_create_material_progreso.sql` - Progreso (vacío inicialmente)
+- `014_create_configuraciones.sql` - Configuraciones del sistema
+- `015_create_sesiones.sql` - Sesiones (vacío, se crean automáticamente)
+- `016_create_logs.sql` - Logs (vacío, se generan automáticamente)
 
 ## 🚀 Instalación
 
-### Opción 1: Ejecución Automática (Recomendada)
+### ⭐ **Opción 1: phpMyAdmin (RECOMENDADA para XAMPP)**
 
-```sql
--- En MySQL/phpMyAdmin, ejecutar:
-source C:/xampp/htdocs/Nexorium/system/database/migrations/000_master_setup.sql;
+**Archivo listo para usar:** `nexorium_complete_setup.sql`
+
+1. Abrir phpMyAdmin: `http://localhost/phpmyadmin`
+2. Clic en pestaña **"SQL"**
+3. Copiar contenido completo de `nexorium_complete_setup.sql`
+4. Pegar en phpMyAdmin y ejecutar
+5. ✅ ¡Base de datos creada con todos los datos!
+
+📖 **Guía detallada:** Ver `INSTALACION_PHPMYADMIN.md`
+
+### Opción 2: Línea de comandos MySQL
+
+```bash
+# En terminal (si tienes MySQL en PATH):
+mysql -u root -p < C:/xampp/htdocs/Nexorium/system/database/nexorium_complete_setup.sql
 ```
 
 ### Opción 2: Ejecución Manual
