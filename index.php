@@ -6,7 +6,7 @@
  */
 
 // Verificar si el servidor de desarrollo está ejecutándose
-$devServerUrl = 'http://localhost:3001/Nexorium/website/';
+$devServerUrl = 'http://localhost:3001/';
 $websiteUrl = '/Nexorium/website/';
 
 // Función para verificar si el servidor de desarrollo está activo

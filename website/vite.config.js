@@ -15,6 +15,11 @@ export default defineConfig({
         target: 'http://localhost/Nexorium/system',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/Nexorium/system': {
+        target: 'http://localhost',
+        changeOrigin: true,
+        secure: false
       }
     }
   },
