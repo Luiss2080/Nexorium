@@ -26,9 +26,11 @@ Nexorium/
 ## 🌐 Frontend - Website (React)
 
 ### **Propósito**
+
 Sitio web público e institucional para promocionar la academia, mostrar cursos disponibles y captar nuevos estudiantes.
 
 ### **Tecnologías**
+
 - **React 18** - Framework principal
 - **Vite** - Herramienta de desarrollo y build
 - **React Router DOM** - Enrutamiento
@@ -36,6 +38,7 @@ Sitio web público e institucional para promocionar la academia, mostrar cursos 
 - **Lucide React** - Iconografía
 
 ### **Estructura**
+
 ```
 website/
 ├── src/
@@ -58,6 +61,7 @@ website/
 ```
 
 ### **Características**
+
 - ✅ **Single Page Application (SPA)**
 - ✅ **Diseño responsivo**
 - ✅ **Animaciones fluidas**
@@ -65,6 +69,7 @@ website/
 - ✅ **Hot reload en desarrollo**
 
 ### **URLs de Acceso**
+
 - **Desarrollo**: `http://localhost:3000/`
 - **Producción**: `http://localhost/Nexorium/website/`
 
@@ -73,9 +78,11 @@ website/
 ## ⚙️ Backend - System (PHP MVC)
 
 ### **Propósito**
+
 Sistema de gestión académica completo para administrar usuarios, cursos, materiales educativos, asistencias y reportes.
 
 ### **Arquitectura MVC**
+
 ```
 system/
 ├── app/
@@ -96,29 +103,34 @@ system/
 ### **Controladores Principales**
 
 #### 🔐 **AuthController**
+
 - Gestión de login, logout, registro
 - Recuperación de contraseñas
 - Validación de sesiones
 
 #### 👨‍💼 **AdminController**
+
 - Panel de administración completo
 - Gestión de usuarios y roles
 - Configuración del sistema
 - Reportes y estadísticas
 
 #### 🎓 **CapacitadorController**
+
 - Dashboard del instructor
 - Gestión de cursos asignados
 - Subida de materiales
 - Registro de asistencias
 
 #### 📚 **EstudianteController**
+
 - Dashboard del estudiante
 - Acceso a cursos inscritos
 - Descarga de materiales
 - Seguimiento de progreso
 
 #### 📋 **CursoController**
+
 - CRUD de cursos
 - Gestión de módulos
 - Inscripciones y matrículas
@@ -141,18 +153,21 @@ system/
 ### **Sistema de Roles**
 
 #### 🛡️ **Administrador**
+
 - Control total del sistema
 - Gestión de usuarios y permisos
 - Configuración global
 - Reportes completos
 
 #### 🎓 **Capacitador**
+
 - Gestión de cursos asignados
 - Subida de materiales
 - Control de asistencias
 - Seguimiento de estudiantes
 
 #### 📚 **Estudiante**
+
 - Acceso a cursos inscritos
 - Descarga de materiales
 - Visualización de progreso
@@ -198,22 +213,22 @@ El frontend React puede consumir APIs del backend PHP mediante:
 
 ```javascript
 // Ejemplo de integración
-const API_BASE = 'http://localhost/Nexorium/system/api/';
+const API_BASE = "http://localhost/Nexorium/system/api/";
 
 // Obtener cursos disponibles
 const fetchCursos = async () => {
-    const response = await fetch(`${API_BASE}cursos`);
-    return response.json();
+  const response = await fetch(`${API_BASE}cursos`);
+  return response.json();
 };
 
 // Autenticación
 const login = async (credentials) => {
-    const response = await fetch(`${API_BASE}auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
-    });
-    return response.json();
+  const response = await fetch(`${API_BASE}auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
+  return response.json();
 };
 ```
 
@@ -247,11 +262,11 @@ start-dev.bat
 
 ### **URLs del Sistema**
 
-| Componente | URL Desarrollo | URL Producción |
-|------------|---------------|----------------|
-| Website (React) | `localhost:3000` | `localhost/Nexorium/website/` |
-| System Login | `localhost/Nexorium/system/auth/login` | `localhost/Nexorium/system/auth/login` |
-| Admin Panel | `localhost/Nexorium/system/admin/dashboard` | `localhost/Nexorium/system/admin/dashboard` |
+| Componente      | URL Desarrollo                              | URL Producción                              |
+| --------------- | ------------------------------------------- | ------------------------------------------- |
+| Website (React) | `localhost:3000`                            | `localhost/Nexorium/website/`               |
+| System Login    | `localhost/Nexorium/system/auth/login`      | `localhost/Nexorium/system/auth/login`      |
+| Admin Panel     | `localhost/Nexorium/system/admin/dashboard` | `localhost/Nexorium/system/admin/dashboard` |
 
 ---
 
@@ -330,6 +345,7 @@ if (!Auth::hasPermission('admin.users.view')) {
 ### **Logs del Sistema**
 
 Los logs se almacenan en `system/storage/logs/` con información detallada de:
+
 - Errores del sistema
 - Accesos de usuarios
 - Operaciones administrativas
