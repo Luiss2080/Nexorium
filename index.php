@@ -1,4 +1,5 @@
 <?php
+
 /**
  * NEXORIUM TRADING ACADEMY
  * Punto de entrada principal del sitio web
@@ -10,7 +11,8 @@ $devServerUrl = 'http://localhost:3001/';
 $websiteUrl = '/Nexorium/website/';
 
 // Función para verificar si el servidor de desarrollo está activo
-function isDevServerRunning($url) {
+function isDevServerRunning($url)
+{
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_NOBODY, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -31,4 +33,3 @@ if (isDevServerRunning($devServerUrl)) {
 }
 
 exit();
-?>
