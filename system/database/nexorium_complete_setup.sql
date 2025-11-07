@@ -451,11 +451,23 @@ INSERT INTO modulos (titulo, descripcion, objetivos, curso_id, orden, duracion_e
 ('Apalancamiento', 'Uso del apalancamiento y sus riesgos', 'Comprender el apalancamiento y su gestion', 3, 4, 6),
 ('Estrategias Forex', 'Estrategias especificas para forex', 'Implementar estrategias efectivas en forex', 3, 5, 8);
 
+-- 010_create_materiales.sql - Seeds
+-- No hay datos iniciales necesarios para esta tabla
+-- Los materiales se subiran cuando los capacitadores creen contenido
+
 -- 011_create_inscripciones.sql - Seeds
 INSERT INTO inscripciones (usuario_id, curso_id, fecha_inscripcion, estado) VALUES
 -- Maria Garcia inscrita en cursos
 (3, 1, '2024-01-10 14:30:00', 'activa'),
 (3, 3, '2024-01-18 16:45:00', 'activa');
+
+-- 012_create_asistencias.sql - Seeds
+-- No hay datos iniciales necesarios para esta tabla
+-- Las asistencias se registraran durante el desarrollo de los cursos
+
+-- 013_create_material_progreso.sql - Seeds
+-- No hay datos iniciales necesarios para esta tabla
+-- El progreso se registrara cuando los estudiantes interactuen con los materiales
 
 -- 014_create_configuraciones.sql - Seeds
 INSERT INTO configuraciones (clave, valor, descripcion, tipo, categoria) VALUES
@@ -487,6 +499,14 @@ INSERT INTO configuraciones (clave, valor, descripcion, tipo, categoria) VALUES
 
 ('notificaciones.email_enabled', 'true', 'Notificaciones por email habilitadas', 'boolean', 'notificaciones'),
 ('notificaciones.sms_enabled', 'false', 'Notificaciones por SMS habilitadas', 'boolean', 'notificaciones');
+
+-- 015_create_sesiones.sql - Seeds
+-- No hay datos iniciales necesarios para esta tabla
+-- Las sesiones se crearan automaticamente cuando los usuarios inicien sesion
+
+-- 016_create_logs.sql - Seeds
+-- No hay datos iniciales necesarios para esta tabla
+-- Los logs se generaran automaticamente durante el uso del sistema
 
 -- =======================================================
 -- VERIFICACION FINAL
