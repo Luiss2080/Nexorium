@@ -29,7 +29,7 @@ Cada archivo contiene la definición de una tabla específica:
 Cada archivo contiene datos iniciales numerados igual que las migraciones:
 
 - `001_create_roles.sql` - Roles básicos del sistema
-- `002_create_usuarios.sql` - Usuario administrador inicial  
+- `002_create_usuarios.sql` - Usuario administrador inicial
 - `003_create_perfiles.sql` - Perfiles de usuarios de ejemplo
 - `004_create_permisos.sql` - Permisos del sistema
 - `005_create_rol_permisos.sql` - Asignación de permisos a roles
