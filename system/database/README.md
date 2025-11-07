@@ -3,6 +3,7 @@
 ## 📁 Estructura de Archivos
 
 ### Migraciones (`migrations/`)
+
 Cada archivo contiene la definición de una tabla específica:
 
 - `000_master_setup.sql` - Archivo maestro que ejecuta todo
@@ -24,6 +25,7 @@ Cada archivo contiene la definición de una tabla específica:
 - `016_create_logs.sql` - Logs del sistema
 
 ### Seeds (`seeds/`)
+
 Cada archivo contiene datos iniciales para cada tabla:
 
 - `roles_seed.sql` - Roles básicos del sistema
@@ -40,13 +42,16 @@ Cada archivo contiene datos iniciales para cada tabla:
 ## 🚀 Instalación
 
 ### Opción 1: Ejecución Automática (Recomendada)
+
 ```sql
 -- En MySQL/phpMyAdmin, ejecutar:
 source C:/xampp/htdocs/Nexorium/system/database/migrations/000_master_setup.sql;
 ```
 
 ### Opción 2: Ejecución Manual
+
 1. Crear la base de datos:
+
 ```sql
 CREATE DATABASE IF NOT EXISTS nexorium_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE nexorium_db;
@@ -56,6 +61,7 @@ USE nexorium_db;
 3. Ejecutar seeds con datos iniciales
 
 ### Opción 3: Usar el archivo original
+
 ```sql
 source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 ```
@@ -63,14 +69,17 @@ source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 ## 👤 Credenciales Iniciales
 
 **Administrador:**
+
 - Email: `admin@nexorium.com`
 - Contraseña: `admin123`
 
 **Instructor:**
+
 - Email: `instructor@nexorium.com`
 - Contraseña: `admin123`
 
 **Estudiante:**
+
 - Email: `maria@estudiante.com`
 - Contraseña: `admin123`
 
@@ -79,6 +88,7 @@ source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 ## 📊 Tablas Principales
 
 ### Sistema de Usuarios
+
 - `roles` - Roles del sistema (admin, capacitador, estudiante)
 - `usuarios` - Información básica de usuarios
 - `perfiles` - Información extendida de usuarios
@@ -87,6 +97,7 @@ source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 - `permisos_usuario` - Permisos específicos por usuario
 
 ### Sistema de Cursos
+
 - `categorias_cursos` - Categorización de cursos
 - `cursos` - Información de cursos
 - `modulos` - Módulos dentro de cada curso
@@ -95,6 +106,7 @@ source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 - `asistencias` - Registro de asistencias
 
 ### Sistema de Seguimiento
+
 - `material_progreso` - Progreso en materiales
 - `sesiones` - Sesiones activas de usuarios
 - `logs` - Auditoría del sistema
@@ -103,12 +115,14 @@ source C:/xampp/htdocs/Nexorium/system/database/migrations/create_database.sql;
 ## 🔧 Mantenimiento
 
 ### Agregar Nueva Migración
+
 1. Crear archivo `017_nueva_tabla.sql`
 2. Definir la estructura de la tabla
 3. Crear el seed correspondiente `nueva_tabla_seed.sql`
 4. Actualizar el archivo maestro si es necesario
 
 ### Modificar Tabla Existente
+
 1. Crear archivo `018_alter_tabla.sql`
 2. Usar comandos `ALTER TABLE`
 3. Documentar los cambios
